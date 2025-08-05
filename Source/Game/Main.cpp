@@ -18,6 +18,7 @@
 #include "Renderer/Font.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/Model.h"
+#include "Renderer/Texture.h"
 
 #include "Engine.h"
 
@@ -44,6 +45,11 @@ int main(int argc, char* argv[]) {
     // Add Sounds
 
 	Cpain::getEngine().getAudio().addSound("bass.wav", "bass");
+
+    // Load Textures
+
+    std::shared_ptr<Cpain::Texture> texture = std::make_shared<Cpain::Texture>();
+    texture->load("SpongeShrug.png", Cpain::getEngine().getRenderer());
 
 	// Additional Initialization
 
@@ -73,6 +79,8 @@ int main(int argc, char* argv[]) {
         Cpain::getEngine().getRenderer().clear();
 
         game->draw(Cpain::getEngine().getRenderer());
+
+        Cpain::getEngine().getRenderer().drawTexture(texture.get(), 30, 30);
         
         // Display
         Cpain::getEngine().getRenderer().present();

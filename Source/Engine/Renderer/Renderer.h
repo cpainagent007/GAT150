@@ -2,6 +2,7 @@
 #include <SDL3/SDL.h>
 #include <iostream>
 #include <SDL3_ttf/SDL_ttf.h>
+#include <SDL3_image/SDL_image.h>
 
 namespace Cpain {
 	class Renderer {
@@ -23,6 +24,13 @@ namespace Cpain {
 
 		int getWidth() const { return m_width; }
 		int getHeight() const { return m_height; }
+
+		SDL_Renderer* getSDLRenderer() {
+			return m_renderer;
+		}
+
+		friend class Texture;
+		void drawTexture(class Texture* texture, float x, float y);
 
 	private:
 		friend class Text;

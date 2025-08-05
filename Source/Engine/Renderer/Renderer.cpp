@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "Texture.h"
 
 namespace Cpain {
 
@@ -111,5 +112,18 @@ namespace Cpain {
         SDL_DestroyRenderer(m_renderer);
         SDL_DestroyWindow(m_window);
         SDL_Quit();
+    }
+
+    void Renderer::drawTexture(Texture* texture, float x, float y)
+    {
+        vec2 size = texture->getSize();
+
+            SDL_FRect destRect;
+        destRect.x = x;
+        destRect.y = y;
+        destRect.w = texture->getSize().x;
+        destRect.h = texture->getSize().y;
+
+        SDL_RenderTexture(m_renderer, texture->getTexture(), NULL, &destRect);
     }
 }
