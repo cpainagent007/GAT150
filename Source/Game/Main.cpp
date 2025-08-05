@@ -14,6 +14,8 @@
 #include "Math/Vector3.h"
 #include "Math/Transform.h"
 
+#include "Resources/ResourceManager.h"
+
 #include "Renderer/Text.h"
 #include "Renderer/Font.h"
 #include "Renderer/Renderer.h"
@@ -37,6 +39,10 @@ int main(int argc, char* argv[]) {
 
 	Cpain::getEngine().initialize();
 
+    // Resources
+
+    auto texture = Cpain::ResourceManager::instance().get<Cpain::Texture>("SpongeShrug.png", Cpain::getEngine().getRenderer());
+
     // Initialize Game
 
 	std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();
@@ -45,11 +51,6 @@ int main(int argc, char* argv[]) {
     // Add Sounds
 
 	Cpain::getEngine().getAudio().addSound("bass.wav", "bass");
-
-    // Load Textures
-
-    std::shared_ptr<Cpain::Texture> texture = std::make_shared<Cpain::Texture>();
-    texture->load("SpongeShrug.png", Cpain::getEngine().getRenderer());
 
 	// Additional Initialization
 

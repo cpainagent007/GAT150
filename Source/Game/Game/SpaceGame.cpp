@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include "GameData.h"
 #include "Renderer/ParticleSystem.h"
+#include "Resources/ResourceManager.h"
 
 #include <vector>
 
@@ -17,15 +18,9 @@ bool SpaceGame::initialize()
 {
     m_scene = std::make_unique<Cpain::Scene>(this);
 
-    m_titleFont = std::make_shared<Cpain::Font>();
-    m_titleFont->load("QuirkyRobot.ttf", 100);
-
-	m_uiFont = std::make_shared<Cpain::Font>();
-	m_uiFont->load("QuirkyRobot.ttf", 50);
-
-    m_titleText = std::make_unique<Cpain::Text>(m_titleFont);
-    m_scoreText = std::make_unique<Cpain::Text>(m_uiFont);
-    m_livesText = std::make_unique<Cpain::Text>(m_uiFont);
+    m_titleText = std::make_unique<Cpain::Text>(Cpain::ResourceManager::instance().get<Cpain::Font>("QuirkyRobot.ttf", 100.0f));
+    m_scoreText = std::make_unique<Cpain::Text>(Cpain::ResourceManager::instance().get<Cpain::Font>("QuirkyRobot.ttf", 50.0f));
+    m_livesText = std::make_unique<Cpain::Text>(Cpain::ResourceManager::instance().get<Cpain::Font>("QuirkyRobot.ttf", 50.0f));
 
     return true;
 }

@@ -37,9 +37,6 @@ private:
 	float m_enemySpawnTimer = 0.0f;
 	float m_stateTimer = 0.0f;
 
-	std::shared_ptr<class Cpain::Font> m_titleFont;
-	std::shared_ptr<class Cpain::Font> m_uiFont;
-
 	std::unique_ptr<class Cpain::Text> m_titleText;
 	std::unique_ptr<class Cpain::Text> m_scoreText;
 	std::unique_ptr<class Cpain::Text> m_livesText;

@@ -1,15 +1,16 @@
 #pragma once
 
+#include "../Math/Vector2.h"
+#include "../Resources/Resource.h"
+
 #include <string>
 #include <SDL3/SDL.h>
-
-#include "../Math/Vector2.h"
 
 namespace Cpain {
 
     class Renderer;
 
-    class Texture {
+    class Texture : public Resource{
     public:
         ~Texture();
 

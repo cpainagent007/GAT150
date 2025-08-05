@@ -46,6 +46,8 @@ namespace Cpain {
             SDL_Quit();
             return false;
         }
+
+        return true;
     }
 
     /// <summary>
