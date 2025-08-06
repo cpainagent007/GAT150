@@ -1,5 +1,6 @@
 #include "Font.h"
 #include <iostream>
+#include <Core/Logger.h>
 
 namespace Cpain
 {
@@ -12,7 +13,8 @@ namespace Cpain
 	bool Font::load(const std::string& name, float fontSize) {
 		m_ttfFont = TTF_OpenFont(name.c_str(), fontSize);
 		if (m_ttfFont == nullptr) {
-			std::cerr << "Could not load font: " << name << std::endl;
+			Cpain::Logger::Error("Could not load font: {}", name);
+
 			return false;
 		}
 

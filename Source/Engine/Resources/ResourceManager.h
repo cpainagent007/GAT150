@@ -41,7 +41,8 @@ namespace Cpain {
 			auto base = iter->second;
 			auto resource = std::dynamic_pointer_cast<T>(base);
 			if (resource == nullptr) {
-				std::cerr << "Resource type mismatch: " << key << std::endl;
+				Cpain::Logger::Error("Resource type mismatch {}", key);
+
 				return res_t<T>();
 			}
 
@@ -50,7 +51,8 @@ namespace Cpain {
 
 		res_t<T> resource = std::make_shared<T>();
 		if (resource->load(name, std::forward<Args>(args)...) == false) {
-			std::cerr << "Cannot load resource: " << name << std::endl;
+			Cpain::Logger::Error("Cannot load resource {}", name);
+
 			return res_t<T>();
 		}
 

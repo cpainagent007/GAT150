@@ -4,6 +4,7 @@
 
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
+#include <Core/Logger.h>
 
 
     Cpain::Texture::~Texture()
@@ -19,7 +20,7 @@
         SDL_Surface* surface = IMG_Load(filename.c_str());
         if (surface == nullptr)
         {
-            std::cerr << "Could not load image: " << filename << std::endl;
+            Cpain::Logger::Error("Could not load image: {}", filename);
             return false;
         }
 
@@ -29,7 +30,8 @@
 
         if (m_texture == nullptr)
         {
-            std::cerr << "Could not create texture: " << filename << std::endl;
+            Cpain::Logger::Error("Could not create texture {}", filename);
+
             return false;
         }
 

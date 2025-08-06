@@ -1,6 +1,7 @@
 #include "AudioSystem.h"
 #include <fmod_errors.h>
 #include <iostream>
+#include <Core/Logger.h>
 
 namespace Cpain {
 
@@ -11,7 +12,7 @@ namespace Cpain {
 	/// <returns>True if the result indicates success (FMOD_OK), false otherwise.</returns>
 	bool AudioSystem::checkFmodResult(FMOD_RESULT result) {
 		if (result != FMOD_OK) {
-			std::cerr << FMOD_ErrorString(result) << std::endl;
+			Cpain::Logger::Error("{}", FMOD_ErrorString(result));
 			return false;
 		}
 		return true;
@@ -53,7 +54,8 @@ namespace Cpain {
 		std::string key = (name.empty()) ? filename : name;
 		key = toLower(key);
 		if (m_sounds.find(key) != m_sounds.end()) {
-			std::cerr << "Audio System: Sound with name '" << key << "' already exists." << std::endl;
+			Cpain::Logger::Warning("Audio System: Sound with name '{}' already exists.", key);
+
 			return false;
 		}
 
@@ -76,7 +78,8 @@ namespace Cpain {
 		key = toLower(key);
 
 		if(m_sounds.find(key) == m_sounds.end()) {
-			std::cerr << "Audio System: Sound with name '" << name << "' does not exist." << std::endl;
+			Cpain::Logger::Error("Audio System: Sound with name '{}' does not exist.", name);
+
 			return false;
 		}
 
