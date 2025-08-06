@@ -51,8 +51,8 @@ void Enemy::update(float deltaTime) {
 			fireTimer = fireRate;
 
 			std::shared_ptr<Cpain::Model> model = std::make_shared<Cpain::Model>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 0.0f, 0.0f });
-			Cpain::Transform transform{ this->transform.position, this->transform.rotation, 5 };
-			auto bullet = std::make_unique<Bullet>(transform, model);
+			Cpain::Transform transform{ this->transform.position, this->transform.rotation, 0.2f };
+			auto bullet = std::make_unique<Bullet>(transform, Cpain::resources().get<Cpain::Texture>("SpongeShrug.png", Cpain::getEngine().getRenderer()));
 			bullet->speed = 3.0f;
 			bullet->lifespan = 1.0f;
 			bullet->name = "bullet";

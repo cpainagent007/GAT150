@@ -43,8 +43,8 @@ void Player::update(float deltaTime) {
 		fireTimer = fireRate;
 
 		std::shared_ptr<Cpain::Model> model = std::make_shared<Cpain::Model>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 1.0f, 0.0f });
-		Cpain::Transform transform{ this->transform.position, this->transform.rotation, 5 };
-		auto bullet = std::make_unique<Bullet>(transform, model);
+		Cpain::Transform transform{ this->transform.position, this->transform.rotation, 0.2f };
+		auto bullet = std::make_unique<Bullet>(transform, Cpain::resources().get<Cpain::Texture>("SpongeShrug.png", Cpain::getEngine().getRenderer()));
 
 		switch (weapon) {
 		case Weapon::Rocket:
@@ -65,7 +65,7 @@ void Player::update(float deltaTime) {
 
 		case Weapon::Super:
 			fireRate = superRate;
-			bullet->transform.scale = 50;
+			bullet->transform.scale = 1.2f;
 			bullet->speed = 0.9f;
 			bullet->lifespan = 3.0f;
 			bullet->name = "bullet";

@@ -18,9 +18,9 @@ bool SpaceGame::initialize()
 {
     m_scene = std::make_unique<Cpain::Scene>(this);
 
-    m_titleText = std::make_unique<Cpain::Text>(Cpain::ResourceManager::instance().get<Cpain::Font>("QuirkyRobot.ttf", 100.0f));
-    m_scoreText = std::make_unique<Cpain::Text>(Cpain::ResourceManager::instance().get<Cpain::Font>("QuirkyRobot.ttf", 50.0f));
-    m_livesText = std::make_unique<Cpain::Text>(Cpain::ResourceManager::instance().get<Cpain::Font>("QuirkyRobot.ttf", 50.0f));
+    m_titleText = std::make_unique<Cpain::Text>(Cpain::resources().getByID<Cpain::Font>("titleFont", "QuirkyRobot.ttf", 100.0f));
+    m_scoreText = std::make_unique<Cpain::Text>(Cpain::resources().getByID<Cpain::Font>("uiFont", "QuirkyRobot.ttf", 50.0f));
+    m_livesText = std::make_unique<Cpain::Text>(Cpain::resources().getByID<Cpain::Font>("uiFont", "QuirkyRobot.ttf", 50.0f));
 
     return true;
 }
@@ -51,8 +51,8 @@ void SpaceGame::update(float deltaTime)
 
         // create player
         std::shared_ptr<Cpain::Model> model = std::make_shared<Cpain::Model>(Cpain::playerPoints, Cpain::vec3{ 0.0f, 1.0f, 0.0f });
-        Cpain::Transform transform{ Cpain::vec2{ Cpain::getEngine().getRenderer().getWidth() * 0.5f, Cpain::getEngine().getRenderer().getHeight() * 0.5f }, 0, 7 };
-        auto player = std::make_unique<Player>(transform, model);
+        Cpain::Transform transform{ Cpain::vec2{ Cpain::getEngine().getRenderer().getWidth() * 0.5f, Cpain::getEngine().getRenderer().getHeight() * 0.5f }, 0, 0.5f };
+        auto player = std::make_unique<Player>(transform, Cpain::resources().get<Cpain::Texture>("SpongeShrug.png", Cpain::getEngine().getRenderer()));
         player->shipSpeed = 1000.0f;
         player->rotationSpeed = 180.0f;
         player->damping = 1.5f;
@@ -144,9 +144,9 @@ void SpaceGame::spawnEnemy() {
         std::shared_ptr<Cpain::Model> enemyModel = std::make_shared<Cpain::Model>(Cpain::enemyPoints, Cpain::vec3{ 1.0f, Cpain::getReal() * 0.5f, Cpain::getReal() * 0.5f });
 
         Cpain::vec2 position = player->transform.position + Cpain::onUnitCircle() * Cpain::getReal(500.0f, 700.0f);
-        Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 10};
+        Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.5f};
 
-        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, enemyModel);
+        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, Cpain::resources().get<Cpain::Texture>("SpongeShrug.png", Cpain::getEngine().getRenderer()));
         int choice = Cpain::getInt(0, 3);
         switch (choice) {
         case 0:
@@ -173,7 +173,7 @@ void SpaceGame::spawnEnemy() {
             enemy->damping = 0.2f;
             enemy->speed = 100;
             enemy->fireTimer = 0;
-            enemy->transform.scale = enemy->transform.scale * 2.0f;
+            enemy->transform.scale = enemy->transform.scale * 1.2f;
             break;
         }
         

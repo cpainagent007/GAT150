@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 
     // Resources
 
-    auto texture = Cpain::ResourceManager::instance().get<Cpain::Texture>("SpongeShrug.png", Cpain::getEngine().getRenderer());
+    auto texture = Cpain::resources().get<Cpain::Texture>("SpongeShrug.png", Cpain::getEngine().getRenderer());
 
     // Initialize Game
 
@@ -80,8 +80,6 @@ int main(int argc, char* argv[]) {
         Cpain::getEngine().getRenderer().clear();
 
         game->draw(Cpain::getEngine().getRenderer());
-
-        Cpain::getEngine().getRenderer().drawTexture(texture.get(), 30, 30);
         
         // Display
         Cpain::getEngine().getRenderer().present();

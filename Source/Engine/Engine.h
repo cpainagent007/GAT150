@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Audio/AudioSystem.h"
-
 #include "Core/Time.h"
-
+#include "Core/Singleton.h"
 #include "Input/InputSystem.h"
-
 #include "Renderer/Renderer.h"
+#include "Renderer/ParticleSystem.h"
+#include "Resources/ResourceManager.h"
 
 #include <memory>
 
@@ -17,9 +17,9 @@ namespace Cpain {
 	class Renderer;
 	class ParticleSystem;
 
-	class Engine {
+	class Engine : public Singleton<Engine> {
 	public:
-		Engine() = default;
+
 
 		bool initialize();
 		void shutdown();
@@ -34,6 +34,10 @@ namespace Cpain {
 		ParticleSystem& getParticleSystem() { return *m_particleSystem; }
 
 	private:
+		friend class Singleton<Engine>;
+		Engine() = default;
+
+	private:
 		std::unique_ptr<AudioSystem> m_audio;
 		Time m_time;
 		std::unique_ptr<InputSystem> m_input;
@@ -43,6 +47,6 @@ namespace Cpain {
 
 	};
 
-	Engine& getEngine();
+	inline Engine& getEngine() { return Engine::instance(); };
 
 }

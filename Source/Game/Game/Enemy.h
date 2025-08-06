@@ -19,8 +19,8 @@ public:
 	float speed = 100.0f;
 public:
 	Enemy() = default;
-	Enemy(const Cpain::Transform& transform, std::shared_ptr<class Cpain::Model> model) :
-		Cpain::Actor{ transform, model } {
+	Enemy(const Cpain::Transform& transform, Cpain::res_t<Cpain::Texture> texture) :
+		Cpain::Actor{ transform, texture } {
 	}
 
 	void update(float deltaTime) override;

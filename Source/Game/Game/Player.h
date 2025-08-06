@@ -26,8 +26,8 @@ public:
 
 public:
 	Player() = default;
-	Player(const Cpain::Transform& transform, std::shared_ptr<class Cpain::Model> model) :
-		Cpain::Actor{ transform, model } {}
+	Player(const Cpain::Transform& transform, Cpain::res_t<Cpain::Texture> texture) :
+		Cpain::Actor{ transform, texture } {}
 
 	void update(float deltaTime) override;
 

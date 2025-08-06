@@ -120,12 +120,26 @@ namespace Cpain {
     {
         vec2 size = texture->getSize();
 
-            SDL_FRect destRect;
+        SDL_FRect destRect;
         destRect.x = x;
         destRect.y = y;
         destRect.w = texture->getSize().x;
         destRect.h = texture->getSize().y;
 
         SDL_RenderTexture(m_renderer, texture->getTexture(), NULL, &destRect);
+    }
+
+    void Renderer::drawTexture(Texture* texture, float x, float y, float angle, float scale)
+    {
+        vec2 size = texture->getSize();
+
+        SDL_FRect destRect;
+        destRect.w = size.x * scale;
+        destRect.h = size.y * scale;
+        destRect.x = x - destRect.w * 0.5f;
+        destRect.y = y - destRect.h * 0.5f;
+
+
+        SDL_RenderTextureRotated(m_renderer, texture->getTexture(), NULL, &destRect, angle, NULL, SDL_FLIP_NONE);
     }
 }

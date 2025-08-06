@@ -40,9 +40,4 @@ namespace Cpain {
 	void Engine::draw() {
 
 	}	
-
-	Engine& getEngine() {
-		static Engine engine;
-		return engine;
-	}
 }

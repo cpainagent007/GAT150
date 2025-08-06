@@ -1,4 +1,5 @@
 #include "Actor.h"
+#include "../Renderer/Renderer.h"
 
 namespace Cpain {
 		
@@ -17,11 +18,11 @@ namespace Cpain {
 	void Actor::draw(Renderer& renderer) {
 		if (!active) return;
 
-		m_model->draw(renderer, transform);
+		renderer.drawTexture(m_texture.get(), transform.position.x, transform.position.y, transform.rotation, transform.scale);
 	}
 
 	float Actor::getRadius() {
-		return (m_model) ? m_model->getRadius() * (transform.scale * 0.9f) : 0.0f;
+		return (m_texture) ? (m_texture->getSize().length() * 0.5) * (transform.scale * 0.9f) : 0.0f;
 	}
 
 }

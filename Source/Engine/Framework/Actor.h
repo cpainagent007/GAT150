@@ -3,6 +3,7 @@
 #include "../Math/Transform.h"
 #include "../Renderer/Model.h"
 #include "Scene.h"
+#include "../Renderer/Texture.h"
 
 #include <memory>
 #include <string>
@@ -24,8 +25,8 @@ namespace Cpain {
 
 	public:
 		Actor() = default;
-		Actor(const Transform& transform, std::shared_ptr<class Model> model)
-			: transform{ transform }, m_model { model } {}
+		Actor(const Transform& transform, res_t<Texture> texture)
+			: transform{ transform }, m_texture { texture } {}
 
 		virtual void update(float deltaTime);
 		virtual void draw(class Renderer& renderer);
@@ -37,6 +38,6 @@ namespace Cpain {
 		virtual void onCollision(Actor* collider) = 0;
 
 	protected:
-		std::shared_ptr<Model> m_model;
+		res_t<Texture> m_texture;
 	};
 }
