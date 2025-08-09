@@ -51,8 +51,8 @@ void SpaceGame::update(float deltaTime)
 
         // create player
         std::shared_ptr<Cpain::Model> model = std::make_shared<Cpain::Model>(Cpain::playerPoints, Cpain::vec3{ 0.0f, 1.0f, 0.0f });
-        Cpain::Transform transform{ Cpain::vec2{ Cpain::getEngine().getRenderer().getWidth() * 0.5f, Cpain::getEngine().getRenderer().getHeight() * 0.5f }, 0, 0.5f };
-        auto player = std::make_unique<Player>(transform, Cpain::resources().get<Cpain::Texture>("SpongeShrug.png", Cpain::getEngine().getRenderer()));
+        Cpain::Transform transform{ Cpain::vec2{ Cpain::getEngine().getRenderer().getWidth() * 0.5f, Cpain::getEngine().getRenderer().getHeight() * 0.5f }, 0, 0.2f };
+        auto player = std::make_unique<Player>(transform, Cpain::resources().get<Cpain::Texture>("Ship.png", Cpain::getEngine().getRenderer()));
         player->shipSpeed = 1000.0f;
         player->rotationSpeed = 180.0f;
         player->damping = 1.5f;
@@ -146,7 +146,7 @@ void SpaceGame::spawnEnemy() {
         Cpain::vec2 position = player->transform.position + Cpain::onUnitCircle() * Cpain::getReal(500.0f, 700.0f);
         Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.5f};
 
-        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, Cpain::resources().get<Cpain::Texture>("SpongeShrug.png", Cpain::getEngine().getRenderer()));
+        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, Cpain::resources().get<Cpain::Texture>("Enemy.png", Cpain::getEngine().getRenderer()));
         int choice = Cpain::getInt(0, 3);
         switch (choice) {
         case 0:
