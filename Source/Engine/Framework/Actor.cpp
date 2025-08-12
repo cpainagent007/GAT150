@@ -21,8 +21,7 @@ namespace Cpain {
 			}
 		}
 
-		transform.position += velocity * deltaTime;
-		velocity *= (1.0f / (1.0f + (damping * deltaTime)));
+		
 	}
 
 	void Actor::draw(Renderer& renderer) {
@@ -36,10 +35,6 @@ namespace Cpain {
 				}
 			}
 		}
-	}
-
-	float Actor::getRadius() {
-		return 50.0f; // (m_texture) ? (m_texture->getSize().length() * 0.3f) * (transform.scale * 0.9f) : 0.0f;
 	}
 
 	void Actor::addComponent(std::unique_ptr<Component> component) {

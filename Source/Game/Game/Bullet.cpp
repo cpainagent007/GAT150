@@ -5,13 +5,20 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/ParticleSystem.h"
 #include "Core/Random.h"
+#include "Components/RigidBody.h"
+#include "../GamePCH.h"
+
 
 void Bullet::update(float deltaTime) {
 	Cpain::vec2 inputDirection{ 1, 0 };
 
 
 	Cpain::vec2 force = Cpain::vec2{ 1, 0 }.rotate(Cpain::degToRad(transform.rotation)) * speed;
-	velocity += force;
+	
+	auto* rb = getComponent<Cpain::RigidBody>();
+	if (rb) {
+		rb->velocity = force;
+	}
 
 	transform.position.x = Cpain::wrap(transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
 	transform.position.y = Cpain::wrap(transform.position.y, 0.0f, (float)Cpain::getEngine().getRenderer().getHeight());

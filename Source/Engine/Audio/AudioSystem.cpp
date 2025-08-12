@@ -89,4 +89,11 @@ namespace Cpain {
 		return true;
 	}
 
+	bool AudioSystem::playSound(AudioClip& audioClip) {
+		FMOD_RESULT result = m_system->playSound(audioClip.m_sound, 0, false, nullptr);
+		if (!checkFmodResult(result)) return false;
+
+		return true;
+	}
+
 }

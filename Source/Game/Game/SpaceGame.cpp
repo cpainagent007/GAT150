@@ -1,4 +1,5 @@
 #include "SpaceGame.h"
+#include "Components/SpriteRenderer.h"
 #include "Framework/Scene.h"
 #include "Core/Random.h"
 #include "Math/Vector2.h"
@@ -11,6 +12,8 @@
 #include "GameData.h"
 #include "Renderer/ParticleSystem.h"
 #include "Resources/ResourceManager.h"
+#include "Components/RigidBody.h"
+#include "../GamePCH.h"
 
 #include <vector>
 
@@ -55,7 +58,6 @@ void SpaceGame::update(float deltaTime)
         auto player = std::make_unique<Player>(transform);
         player->shipSpeed = 1000.0f;
         player->rotationSpeed = 180.0f;
-        player->damping = 1.5f;
         player->name = "player";
         player->tag = "player";
         player->weapon = Player::Weapon::Rocket;
@@ -64,6 +66,14 @@ void SpaceGame::update(float deltaTime)
         auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
         spriteRenderer->textureName = "Ship.png";
         player->addComponent(std::move(spriteRenderer));
+
+        auto rb = std::make_unique<Cpain::RigidBody>();
+        rb->damping = 1.5f;
+        player->addComponent(std::move(rb));
+
+        auto collider = std::make_unique<Cpain::CircleCollider2D>();
+        collider->radius = 60;
+        player->addComponent(std::move(collider));
 
         m_scene->addActor(std::move(player));
         m_gameState = GameState::Playing;
@@ -156,26 +166,22 @@ void SpaceGame::spawnEnemy() {
         switch (choice) {
         case 0:
             enemy->type = Enemy::Type::Basic;
-            enemy->damping = 0.2f;
             enemy->speed = (Cpain::getReal() * 400) + 300;
             enemy->fireTimer = 0;
             break;
         case 1:
             enemy->type = Enemy::Type::Fast;
-            enemy->damping = 0.7f;
             enemy->speed = (Cpain::getReal() * 800) + 600;
             enemy->fireTimer = 0;
             enemy->transform.scale = enemy->transform.scale * 0.5f;
             break;
         case 2:
             enemy->type = Enemy::Type::Shooter;
-            enemy->damping = 0.2f;
             enemy->speed = (Cpain::getReal() * 400) + 300;
             enemy->fireTimer = 5;
             break;
         case 3:
             enemy->type = Enemy::Type::Mega;
-            enemy->damping = 0.2f;
             enemy->speed = 100;
             enemy->fireTimer = 0;
             enemy->transform.scale = enemy->transform.scale * 1.2f;
@@ -186,6 +192,14 @@ void SpaceGame::spawnEnemy() {
         auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
         spriteRenderer->textureName = "Enemy.png";
         enemy->addComponent(std::move(spriteRenderer));
+
+        auto rb = std::make_unique<Cpain::RigidBody>();
+        rb->damping = 0.5f;
+        enemy->addComponent(std::move(rb));
+
+        auto collider = std::make_unique<Cpain::CircleCollider2D>();
+        collider->radius = 60;
+        enemy->addComponent(std::move(collider));
         
         enemy->tag = "enemy";
         m_scene->addActor(std::move(enemy));

@@ -66,10 +66,6 @@ int main(int argc, char* argv[]) {
 		Cpain::getEngine().update();
 		game->update(Cpain::getEngine().getTime().getDeltaTime());
 
-        // Update Input
-
-        if (Cpain::getEngine().getInput().getKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
-
         // Draw
         Cpain::vec3 color{ 0, 0, 0 };
 		Cpain::getEngine().getRenderer().setColor(color.r, color.g, color.b);

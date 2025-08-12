@@ -12,6 +12,8 @@
 #include "Player.h"
 #include "Math/Vector2.h"
 #include "Components/SpriteRenderer.h"
+#include "Components/RigidBody.h"
+#include "../GamePCH.h"
 
 void Enemy::update(float deltaTime) {
 
@@ -36,7 +38,12 @@ void Enemy::update(float deltaTime) {
 	}
 
 	Cpain::vec2 force = Cpain::vec2{ 1, 0 }.rotate(Cpain::degToRad(transform.rotation)) * speed;
-	velocity += force * deltaTime;
+
+	auto* rb = getComponent<Cpain::RigidBody>();
+	if (rb) {
+		rb->velocity += force * deltaTime;
+	}
+	
 
 	transform.position.x = Cpain::wrap(transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
 	transform.position.y = Cpain::wrap(transform.position.y, 0.0f, (float)Cpain::getEngine().getRenderer().getHeight());
@@ -63,6 +70,13 @@ void Enemy::update(float deltaTime) {
 			spriteRenderer->textureName = "EnemyRocket.png";
 
 			bullet->addComponent(std::move(spriteRenderer));
+
+			auto rb = std::make_unique<Cpain::RigidBody>();
+			bullet->addComponent(std::move(rb));
+
+			auto collider = std::make_unique<Cpain::CircleCollider2D>();
+			collider->radius = 30;
+			bullet->addComponent(std::move(collider));
 
 			scene->addActor(std::move(bullet));
 

@@ -10,6 +10,8 @@
 #include "SpaceGame.h"
 #include "Renderer/ParticleSystem.h"
 #include "Core/Random.h"
+#include "Components/RigidBody.h"
+#include "../GamePCH.h"
 
 void Player::update(float deltaTime) {
 
@@ -33,7 +35,11 @@ void Player::update(float deltaTime) {
 
 	Cpain::vec2 inputDirection{ 1, 0 };
 	Cpain::vec2 force = inputDirection.rotate(Cpain::degToRad(transform.rotation)) * thrust * shipSpeed;
-	velocity += force * deltaTime;
+	
+	auto* rb = getComponent<Cpain::RigidBody>();
+	if (rb) {
+		rb->velocity += force * deltaTime;
+	}
 
 	transform.position.x = Cpain::wrap(transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
 	transform.position.y = Cpain::wrap(transform.position.y, 0.0f, (float)Cpain::getEngine().getRenderer().getHeight());
@@ -78,6 +84,13 @@ void Player::update(float deltaTime) {
 		auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
 		spriteRenderer->textureName = "Rocket.png";
 		bullet->addComponent(std::move(spriteRenderer));
+
+		auto rb = std::make_unique<Cpain::RigidBody>();
+		bullet->addComponent(std::move(rb));
+
+		auto collider = std::make_unique<Cpain::CircleCollider2D>();
+		collider->radius = 30;
+		bullet->addComponent(std::move(collider));
 
 		scene->addActor(std::move(bullet));
 

@@ -7,11 +7,17 @@ namespace Cpain {
 	}
 
 	void SpriteRenderer::draw(Renderer& renderer) {
-		renderer.drawTexture(resources().get<Texture>(textureName, renderer).get(),
-			owner->transform.position.x,
-			owner->transform.position.y,
-			owner->transform.rotation,
-			owner->transform.scale);
+		auto texture = resources().get<Texture>(textureName, renderer).get();
+
+		if (texture) {
+			renderer.drawTexture(*texture,
+				owner->transform.position.x,
+				owner->transform.position.y,
+				owner->transform.rotation,
+				owner->transform.scale);
+		}
+
+
 	}
 
 }

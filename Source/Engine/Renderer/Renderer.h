@@ -30,8 +30,8 @@ namespace Cpain {
 		}
 
 		friend class Texture;
-		void drawTexture(class Texture* texture, float x, float y);
-		void drawTexture(class Texture* texture, float x, float y, float angle, float scale = 1);
+		void drawTexture(class Texture& texture, float x, float y);
+		void drawTexture(class Texture& texture, float x, float y, float angle, float scale = 1);
 
 	private:
 		friend class Text;

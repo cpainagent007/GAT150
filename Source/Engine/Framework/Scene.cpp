@@ -28,12 +28,15 @@ namespace Cpain {
 			for (auto& actorB : m_actors) {
 				if (actorA == actorB || (actorA->active == false) || (actorB->active == false)) continue;
 
-				float distance = (actorA->transform.position - actorB->transform.position).length();
-				if (distance <= actorA->getRadius() + actorB->getRadius()) {
+				auto colliderA = actorA->getComponent<ColliderComponent>();
+				auto colliderB = actorB->getComponent<ColliderComponent>();
+
+				if (!colliderA || !colliderB) continue;
+
+				if (colliderA->checkCollision(*colliderB)) {
 					actorA->onCollision(actorB.get());
 					actorB->onCollision(actorA.get());
 				}
-
 			}
 		}
 	}

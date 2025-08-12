@@ -2,6 +2,7 @@
 
 // Audio
 #include "Audio/AudioSystem.h"
+#include "Audio/AudioClip.h"
 
 // Core
 #include "Core/File.h"
@@ -29,7 +30,10 @@
 
 // Components
 #include "Components/RendererComponent.h"
+#include "Components/RigidBody.h"
 #include "Components/SpriteRenderer.h"
+#include "Components/ColliderComponent.h"
+#include "Components/CircleCollider2D.h"
 
 // Renderer
 #include "Renderer/Font.h"
