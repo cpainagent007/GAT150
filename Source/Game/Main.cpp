@@ -39,10 +39,6 @@ int main(int argc, char* argv[]) {
 
 	Cpain::getEngine().initialize();
 
-    // Resources
-
-    auto texture = Cpain::resources().get<Cpain::Texture>("SpongeShrug.png", Cpain::getEngine().getRenderer());
-
     // Initialize Game
 
 	std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();

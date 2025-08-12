@@ -44,7 +44,7 @@ void Player::update(float deltaTime) {
 
 		std::shared_ptr<Cpain::Model> model = std::make_shared<Cpain::Model>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 1.0f, 0.0f });
 		Cpain::Transform transform{ this->transform.position, this->transform.rotation, 0.2f };
-		auto bullet = std::make_unique<Bullet>(transform, Cpain::resources().get<Cpain::Texture>("Rocket.png", Cpain::getEngine().getRenderer()));
+		auto bullet = std::make_unique<Bullet>(transform);
 
 		switch (weapon) {
 		case Weapon::Rocket:
@@ -74,7 +74,10 @@ void Player::update(float deltaTime) {
 
 		}
 			
-		
+
+		auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
+		spriteRenderer->textureName = "Rocket.png";
+		bullet->addComponent(std::move(spriteRenderer));
 
 		scene->addActor(std::move(bullet));
 

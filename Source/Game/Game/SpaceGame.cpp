@@ -52,13 +52,18 @@ void SpaceGame::update(float deltaTime)
         // create player
         std::shared_ptr<Cpain::Model> model = std::make_shared<Cpain::Model>(Cpain::playerPoints, Cpain::vec3{ 0.0f, 1.0f, 0.0f });
         Cpain::Transform transform{ Cpain::vec2{ Cpain::getEngine().getRenderer().getWidth() * 0.5f, Cpain::getEngine().getRenderer().getHeight() * 0.5f }, 0, 0.2f };
-        auto player = std::make_unique<Player>(transform, Cpain::resources().get<Cpain::Texture>("Ship.png", Cpain::getEngine().getRenderer()));
+        auto player = std::make_unique<Player>(transform);
         player->shipSpeed = 1000.0f;
         player->rotationSpeed = 180.0f;
         player->damping = 1.5f;
         player->name = "player";
         player->tag = "player";
         player->weapon = Player::Weapon::Rocket;
+
+
+        auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
+        spriteRenderer->textureName = "Ship.png";
+        player->addComponent(std::move(spriteRenderer));
 
         m_scene->addActor(std::move(player));
         m_gameState = GameState::Playing;
@@ -146,7 +151,7 @@ void SpaceGame::spawnEnemy() {
         Cpain::vec2 position = player->transform.position + Cpain::onUnitCircle() * Cpain::getReal(500.0f, 700.0f);
         Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.5f};
 
-        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, Cpain::resources().get<Cpain::Texture>("Enemy.png", Cpain::getEngine().getRenderer()));
+        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform);
         int choice = Cpain::getInt(0, 3);
         switch (choice) {
         case 0:
@@ -176,6 +181,11 @@ void SpaceGame::spawnEnemy() {
             enemy->transform.scale = enemy->transform.scale * 1.2f;
             break;
         }
+
+
+        auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
+        spriteRenderer->textureName = "Enemy.png";
+        enemy->addComponent(std::move(spriteRenderer));
         
         enemy->tag = "enemy";
         m_scene->addActor(std::move(enemy));

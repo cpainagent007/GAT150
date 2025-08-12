@@ -26,8 +26,8 @@ public:
 
 public:
 	Player() = default;
-	Player(const Cpain::Transform& transform, Cpain::res_t<Cpain::Texture> texture) :
-		Cpain::Actor{ transform, texture } {}
+	Player(const Cpain::Transform& transform) :
+		Cpain::Actor{ transform } {}
 
 	void update(float deltaTime) override;
 

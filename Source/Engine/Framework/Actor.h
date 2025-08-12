@@ -4,14 +4,14 @@
 #include "../Renderer/Model.h"
 #include "Scene.h"
 #include "../Renderer/Texture.h"
+#include "Object.h"
 
 #include <memory>
 #include <string>
 
 namespace Cpain {
-	class Actor {
+	class Actor : public Object {
 	public:
-		std::string name;
 		std::string tag;
 
 		vec2 velocity{ 0, 0 };
@@ -25,8 +25,8 @@ namespace Cpain {
 
 	public:
 		Actor() = default;
-		Actor(const Transform& transform, res_t<Texture> texture)
-			: transform{ transform }, m_texture { texture } {}
+		Actor(const Transform& transform)
+			: transform{ transform } {}
 
 		virtual void update(float deltaTime);
 		virtual void draw(class Renderer& renderer);
@@ -37,7 +37,9 @@ namespace Cpain {
 
 		virtual void onCollision(Actor* collider) = 0;
 
+		void addComponent(std::unique_ptr<class Component> component);
+
 	protected:
-		res_t<Texture> m_texture;
+		std::vector<std::unique_ptr<class Component>> m_components;
 	};
 }

@@ -7,7 +7,10 @@ namespace Cpain {
 	void Scene::update(float deltaTime) {
 		// Update
 		for (auto& actor : m_actors) {
-			actor->update(deltaTime);
+			if (actor->active) {
+				actor->update(deltaTime);
+			}
+			
 		}
 
 		// Remove inactive
@@ -37,7 +40,10 @@ namespace Cpain {
 
 	void Scene::draw(Renderer& renderer) {
 		for (auto& actor : m_actors) {
-			actor->draw(renderer);
+			if (actor->active) {
+				actor->draw(renderer);
+			}
+
 		}
 	}
 
