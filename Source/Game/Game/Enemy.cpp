@@ -58,7 +58,7 @@ void Enemy::update(float deltaTime) {
 		if (fireTimer <= 0 && playerVisible) {
 			fireTimer = fireRate;
 
-			std::shared_ptr<Cpain::Model> model = std::make_shared<Cpain::Model>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 0.0f, 0.0f });
+			std::shared_ptr<Cpain::Mesh> model = std::make_shared<Cpain::Mesh>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 0.0f, 0.0f });
 			Cpain::Transform transform{ this->transform.position, this->transform.rotation, 0.2f };
 			auto bullet = std::make_unique<Bullet>(transform);
 			bullet->speed = 3.0f;

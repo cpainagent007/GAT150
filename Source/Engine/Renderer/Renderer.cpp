@@ -31,11 +31,11 @@ namespace Cpain {
     /// <param name="width">The width of the window in pixels.</param>
     /// <param name="height">The height of the window in pixels.</param>
     /// <returns>True if the window and renderer were created successfully; false otherwise.</returns>
-    bool Renderer::createWindow(const std::string& name, int width, int height) {
+    bool Renderer::createWindow(const std::string& name, int width, int height, bool fullscreen) {
 		m_width = width;
 		m_height = height;
 
-        m_window = SDL_CreateWindow(name.c_str(), width, height, 0);
+        m_window = SDL_CreateWindow(name.c_str(), width, height, fullscreen ? SDL_WINDOW_FULLSCREEN : 0);
         if (m_window == nullptr) {
             Cpain::Logger::Error("SDL_CreateWindow {}", SDL_GetError());
 
@@ -51,6 +51,8 @@ namespace Cpain {
             SDL_Quit();
             return false;
         }
+
+        SDL_SetRenderLogicalPresentation(m_renderer, width, height, SDL_LOGICAL_PRESENTATION_LETTERBOX);
 
         return true;
     }

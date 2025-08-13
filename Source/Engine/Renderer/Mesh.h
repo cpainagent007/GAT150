@@ -6,14 +6,16 @@
 #include <vector>
 
 namespace Cpain {
-	class Model {
+	class Mesh : public Resource {
 
 	public:
-		Model() = default;
-		Model(const std::vector<vec2>& points, const vec3& color = { 1, 1, 1 })
+		Mesh() = default;
+		Mesh(const std::vector<vec2>& points, const vec3& color = { 1, 1, 1 })
 			: m_points{ points }, m_color{ color } {
 			calculateRadius();
 		}
+
+		bool load(const std::string filename);
 
 		void draw(class Renderer& renderer, const vec2& position, float rotation, float scale);
 		void draw(class Renderer& renderer, const Transform& transform);

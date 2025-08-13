@@ -45,6 +45,49 @@ namespace Cpain {
 		float length() const { return sqrtf(lengthSqrd()); }
 	};
 
+	template <typename T>
+	std::ostream& operator << (std::ostream& stream, const Vector3<T>& vector) {
+		stream << "{" << vector.x << ", " << vector.y << ", " << vector.z << "}";
+
+		return stream;
+	}
+
+	template <typename T>
+	std::istream& operator >> (std::istream& stream, Vector3<T>& vector) {
+		char ch = '\0';
+
+		if (!(stream >> std::ws >> ch) || ch != '{') {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+		if (!(stream >> std::ws >> vector.x)) {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+		if (!(stream >> std::ws >> ch) || ch != ',') {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+		if (!(stream >> std::ws >> vector.y)) {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+		if (!(stream >> std::ws >> ch) || ch != ',') {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+		if (!(stream >> std::ws >> vector.z)) {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+		if (!(stream >> std::ws >> ch) || ch != '}') {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+
+		return stream;
+	}
+
 	using ivec3 = Vector3<int>;
 	using vec3 = Vector3<float>;
 }

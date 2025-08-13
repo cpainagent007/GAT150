@@ -15,8 +15,6 @@ namespace Cpain {
 
 		Vector2 operator+(const Vector2& value) const { return Vector2{ x + value.x, y + value.y }; }
 		Vector2 operator-(const Vector2& value) const { return Vector2{ x - value.x, y - value.y }; }
-		//Vector2 operator*(const T& value) const { return Vector2{ x * value, y * value }; }
-		//Vector2 operator/(const T& value) const { return Vector2{ x / value, y / value }; }
 
 		Vector2 operator+(float scalar) const { return Vector2{ x + scalar, y + scalar }; }
 		Vector2 operator-(float scalar) const { return Vector2{ x - scalar, y - scalar }; }
@@ -25,8 +23,6 @@ namespace Cpain {
 
 		Vector2& operator+=(const Vector2& value) { x += value.x; y += value.y; return *this; }
 		Vector2& operator-=(const Vector2& value) { x -= value.x; y -= value.y; return *this; }
-		//Vector2& operator*=(const T& value) { x *= value; y *= value; return *this; }
-		//Vector2& operator/=(const T& value) { x /= value; y /= value; return *this; }
 
 		Vector2& operator+=(float scalar) { x += scalar; y += scalar; return *this; }
 		Vector2& operator-=(float scalar) { x -= scalar; y -= scalar; return *this; }
@@ -94,6 +90,41 @@ namespace Cpain {
 
 
 	};
+
+	template <typename T>
+	std::ostream& operator << (std::ostream& stream, const Vector2<T>& vector) {
+		stream << "{" << vector.x << ", " << vector.y << "}";
+
+		return stream;
+	}
+
+	template <typename T>
+	std::istream& operator >> (std::istream& stream, Vector2<T>& vector) {
+		char ch = '\0';
+
+		if (!(stream >> std::ws >> ch) || ch != '{') {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+		if (!(stream >> std::ws >> vector.x)) {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+		if (!(stream >> std::ws >> ch) || ch != ',') {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+		if (!(stream >> std::ws >> vector.y)) {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+		if (!(stream >> std::ws >> ch) || ch != '}') {
+			stream.setstate(std::ios::failbit);
+			return stream;
+		}
+
+		return stream;
+	}
 
 	using ivec2 = Vector2<int>;
 	using vec2 = Vector2<float>;

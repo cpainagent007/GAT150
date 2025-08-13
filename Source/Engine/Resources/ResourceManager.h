@@ -13,6 +13,8 @@
 namespace Cpain {
 	class ResourceManager : public Singleton<ResourceManager> {
 	public:
+		void clear() { m_resources.clear(); }
+
 		template <typename T, typename ... Args>
 		res_t<T> get(const std::string& name, Args&& ... args);
 

@@ -3,6 +3,7 @@
 #include "Input/InputSystem.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/ParticleSystem.h"
+#include "Resources/ResourceManager.h"
 
 namespace Cpain {
 
@@ -24,6 +25,8 @@ namespace Cpain {
 	}
 
 	void Engine::shutdown() {
+		resources().clear();
+
 		m_audio->shutdown();
 		m_input->shutdown();
 		m_renderer->shutdown();

@@ -53,7 +53,7 @@ void SpaceGame::update(float deltaTime)
         m_scene->removeAll();
 
         // create player
-        std::shared_ptr<Cpain::Model> model = std::make_shared<Cpain::Model>(Cpain::playerPoints, Cpain::vec3{ 0.0f, 1.0f, 0.0f });
+        std::shared_ptr<Cpain::Mesh> model = std::make_shared<Cpain::Mesh>(Cpain::playerPoints, Cpain::vec3{ 0.0f, 1.0f, 0.0f });
         Cpain::Transform transform{ Cpain::vec2{ Cpain::getEngine().getRenderer().getWidth() * 0.5f, Cpain::getEngine().getRenderer().getHeight() * 0.5f }, 0, 0.2f };
         auto player = std::make_unique<Player>(transform);
         player->shipSpeed = 1000.0f;
@@ -156,7 +156,7 @@ void SpaceGame::shutdown() {
 void SpaceGame::spawnEnemy() {
     Player* player = m_scene->getActorByName<Player>("player");
     if (player) {
-        std::shared_ptr<Cpain::Model> enemyModel = std::make_shared<Cpain::Model>(Cpain::enemyPoints, Cpain::vec3{ 1.0f, Cpain::getReal() * 0.5f, Cpain::getReal() * 0.5f });
+        std::shared_ptr<Cpain::Mesh> enemyModel = std::make_shared<Cpain::Mesh>(Cpain::enemyPoints, Cpain::vec3{ 1.0f, Cpain::getReal() * 0.5f, Cpain::getReal() * 0.5f });
 
         Cpain::vec2 position = player->transform.position + Cpain::onUnitCircle() * Cpain::getReal(500.0f, 700.0f);
         Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.5f};

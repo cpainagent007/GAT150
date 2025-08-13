@@ -1,10 +1,26 @@
-#include "Model.h"
+#include "Mesh.h"
 #include "Renderer.h"
 
 namespace Cpain {
 
+	bool Mesh::load(const std::string filename) {
+		std::string buffer;
+		readTextFile(filename, buffer);
+
+		std::stringstream stream(buffer);
+
+		stream >> m_color;
+		vec2 point;
+
+		while (stream >> point) {
+			m_points.push_back(point);
+		}
+
+		return false;
+	}
+
 	
-	void Model::draw(class Renderer& renderer, const vec2& position, float rotation, float scale) {
+	void Mesh::draw(class Renderer& renderer, const vec2& position, float rotation, float scale) {
 		if (m_points.empty()) return;
 
 		renderer.setColor( m_color.r, m_color.g, m_color.b );
@@ -18,11 +34,11 @@ namespace Cpain {
 	}
 
 
-	void Model::draw(class Renderer& renderer, const Transform& transform) {
+	void Mesh::draw(class Renderer& renderer, const Transform& transform) {
 		draw(renderer, transform.position, transform.rotation, transform.scale);
 	}
 
-	void Model::calculateRadius() {
+	void Mesh::calculateRadius() {
 		m_radius = 0.0f;
 		for (auto& point : m_points) {
 			float length = point.length();

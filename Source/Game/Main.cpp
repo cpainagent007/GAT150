@@ -30,10 +30,14 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <fstream>
 
 int main(int argc, char* argv[]) {
 
 	Cpain::setCurrentDirectory("Assets");
+    Cpain::Logger::Info("Current Directory {}", Cpain::getCurrentDirectory());
+
+    return 0;
 
     // Initialize SDL/Renderer
 
