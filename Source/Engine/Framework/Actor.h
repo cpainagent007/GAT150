@@ -56,7 +56,7 @@ namespace Cpain {
 	}
 
 	template <typename T>
-	inline std::vector<T*> getComponents() {
+	inline std::vector<T*> Actor::getComponents() {
 		std::vector<T*> results;
 
 		for (auto& component : m_components) {
