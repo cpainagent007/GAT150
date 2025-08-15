@@ -1,6 +1,8 @@
 #pragma once
 #include "Math.h"
 
+#include <iostream>
+
 namespace Cpain {
 	template<typename T>
 	struct Vector3 {
@@ -57,31 +59,24 @@ namespace Cpain {
 		char ch = '\0';
 
 		if (!(stream >> std::ws >> ch) || ch != '{') {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 		if (!(stream >> std::ws >> vector.x)) {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 		if (!(stream >> std::ws >> ch) || ch != ',') {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 		if (!(stream >> std::ws >> vector.y)) {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 		if (!(stream >> std::ws >> ch) || ch != ',') {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 		if (!(stream >> std::ws >> vector.z)) {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 		if (!(stream >> std::ws >> ch) || ch != '}') {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 

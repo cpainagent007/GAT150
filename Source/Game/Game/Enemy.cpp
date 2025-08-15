@@ -6,7 +6,7 @@
 #include "Bullet.h"
 #include "GameData.h" 
 #include "Math/Vector3.h"
-#include "Renderer/Model.h"
+#include "Renderer/Mesh.h"
 #include "Renderer/ParticleSystem.h"
 #include "Core/Random.h"
 #include "Player.h"

@@ -1,6 +1,8 @@
 #pragma once
 #include "Math.h"
 
+#include <iostream>
+
 namespace Cpain {
 	template<typename T>
 	struct Vector2 {
@@ -92,34 +94,28 @@ namespace Cpain {
 	};
 
 	template <typename T>
-	std::ostream& operator << (std::ostream& stream, const Vector2<T>& vector) {
-		stream << "{" << vector.x << ", " << vector.y << "}";
-
-		return stream;
+	std::ostream& operator<<(std::ostream& stream, const Vector2<T>& vector) {
+		return stream << '{' << vector.x << ", " << vector.y << '}';
 	}
+
 
 	template <typename T>
 	std::istream& operator >> (std::istream& stream, Vector2<T>& vector) {
 		char ch = '\0';
 
 		if (!(stream >> std::ws >> ch) || ch != '{') {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 		if (!(stream >> std::ws >> vector.x)) {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 		if (!(stream >> std::ws >> ch) || ch != ',') {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 		if (!(stream >> std::ws >> vector.y)) {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 		if (!(stream >> std::ws >> ch) || ch != '}') {
-			stream.setstate(std::ios::failbit);
 			return stream;
 		}
 
