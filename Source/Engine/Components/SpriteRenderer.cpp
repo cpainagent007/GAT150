@@ -1,6 +1,7 @@
 #include "SpriteRenderer.h"
 
 namespace Cpain {
+	FACTORY_REGISTER(SpriteRenderer)
 
 	void SpriteRenderer::update(float deltaTime) {
 

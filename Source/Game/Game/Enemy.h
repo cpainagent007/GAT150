@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Framework/Actor.h"
+#include "Framework/Component.h"
 
-class Enemy : public Cpain::Actor {
+
+class Enemy : public Cpain::Component {
 public:
 	enum class Type {
 		Basic,
@@ -19,11 +20,9 @@ public:
 	float speed = 100.0f;
 public:
 	Enemy() = default;
-	Enemy(const Cpain::Transform& transform) :
-		Cpain::Actor{ transform } {}
+
+	void onCollision(class Actor* collider);
 
 	void update(float deltaTime) override;
-
-	void onCollision(Actor* collider) override;
 
 };

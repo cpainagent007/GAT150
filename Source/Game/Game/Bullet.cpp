@@ -8,6 +8,8 @@
 #include "Components/RigidBody.h"
 #include "../GamePCH.h"
 
+FACTORY_REGISTER(Bullet)
+
 
 void Bullet::update(float deltaTime) {
 	Cpain::vec2 inputDirection{ 1, 0 };

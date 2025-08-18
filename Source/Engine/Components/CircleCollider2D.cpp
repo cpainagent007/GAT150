@@ -1,6 +1,7 @@
 #include "CircleCollider2D.h"
 
 namespace Cpain {
+    FACTORY_REGISTER(CircleCollider2D)
 
     void Cpain::CircleCollider2D::update(float deltaTime) {
 

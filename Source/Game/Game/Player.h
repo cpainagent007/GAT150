@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Framework/Actor.h"
+#include "Framework/Component.h"
 
-class Player : public Cpain::Actor {
+class Player : public Cpain::Component {
 public:
 	enum class Weapon {
 		Rocket,
@@ -26,12 +26,10 @@ public:
 
 public:
 	Player() = default;
-	Player(const Cpain::Transform& transform) :
-		Cpain::Actor{ transform } {}
 
 	void update(float deltaTime) override;
 
-	void onCollision(Actor* collider) override;
+	void onCollision(class Actor* collider);
 
 	bool getMoving();
 

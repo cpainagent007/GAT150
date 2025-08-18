@@ -13,6 +13,8 @@
 #include "Components/RigidBody.h"
 #include "../GamePCH.h"
 
+FACTORY_REGISTER(Player)
+
 void Player::update(float deltaTime) {
 
 	Cpain::Particle particle;

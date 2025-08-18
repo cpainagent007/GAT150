@@ -5,6 +5,7 @@
 #include "Audio/AudioClip.h"
 
 // Core
+#include "Core/Factory.h"
 #include "Core/File.h"
 #include "Core/Json.h"
 #include "Core/Logger.h"

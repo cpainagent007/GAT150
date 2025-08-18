@@ -16,9 +16,11 @@ namespace Cpain {
 		void clear() { m_resources.clear(); }
 
 		template <typename T, typename ... Args>
+		requires std::derived_from<T, Resource>
 		res_t<T> get(const std::string& name, Args&& ... args);
 
 		template <typename T, typename ... Args>
+		requires std::derived_from<T, Resource>
 		res_t<T> getByID(const std::string& id, const std::string& name, Args&& ... args);
 		
 	private:
@@ -31,11 +33,13 @@ namespace Cpain {
 	};
 
 	template <typename T, typename ... Args>
+	requires std::derived_from<T, Resource>
 	inline res_t<T> ResourceManager::get(const std::string& name, Args&& ... args) {
 		return getByID<T>(name, name, std::forward<Args>(args)...);
 	}
 
 	template<typename T, typename ...Args>
+	requires std::derived_from<T, Resource>
 	inline res_t<T> ResourceManager::getByID(const std::string& id, const std::string& name, Args && ...args) {
 		std::string key = toLower(id);
 

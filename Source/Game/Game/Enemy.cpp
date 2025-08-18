@@ -15,17 +15,19 @@
 #include "Components/RigidBody.h"
 #include "../GamePCH.h"
 
+FACTORY_REGISTER(Enemy)
+
 void Enemy::update(float deltaTime) {
 
 	bool playerVisible = false;
 	
-	Player* player = scene->getActorByName<Player>("player");
+	Actor* player = owner->scene->getActorByName<Actor>("player");
 	if (player) {
 		Cpain::vec2 direction{ 1, 0 };
-		direction = player->transform.position - transform.position;
+		direction = player->transform.position - owner->transform.position;
 
 		direction = direction.normalized();
-		Cpain::vec2 forward = Cpain::vec2{ 1, 0 }.rotate(Cpain::degToRad(transform.rotation));
+		Cpain::vec2 forward = Cpain::vec2{ 1, 0 }.rotate(Cpain::degToRad(owner->transform.rotation));
 
 		float angle = Cpain::radToDeg(Cpain::vec2::angleBetween(forward, direction));
 		playerVisible = (angle < 30);
@@ -33,20 +35,20 @@ void Enemy::update(float deltaTime) {
 		if (playerVisible) {
 			float angle = Cpain::vec2::signedAngleBetween(forward, direction);
 			angle = Cpain::sign(angle);
-			transform.rotation += Cpain::radToDeg((angle * 3) * deltaTime);
+			owner->transform.rotation += Cpain::radToDeg((angle * 3) * deltaTime);
 		}
 	}
 
-	Cpain::vec2 force = Cpain::vec2{ 1, 0 }.rotate(Cpain::degToRad(transform.rotation)) * speed;
+	Cpain::vec2 force = Cpain::vec2{ 1, 0 }.rotate(Cpain::degToRad(owner->transform.rotation)) * speed;
 
-	auto* rb = getComponent<Cpain::RigidBody>();
+	auto* rb = owner->getComponent<Cpain::RigidBody>();
 	if (rb) {
 		rb->velocity += force * deltaTime;
 	}
 	
 
-	transform.position.x = Cpain::wrap(transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
-	transform.position.y = Cpain::wrap(transform.position.y, 0.0f, (float)Cpain::getEngine().getRenderer().getHeight());
+	owner->transform.position.x = Cpain::wrap(owner->transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
+	owner->transform.position.y = Cpain::wrap(owner->transform.position.y, 0.0f, (float)Cpain::getEngine().getRenderer().getHeight());
 
 	switch (type) {
 	case Type::Basic:
@@ -59,8 +61,8 @@ void Enemy::update(float deltaTime) {
 			fireTimer = fireRate;
 
 			std::shared_ptr<Cpain::Mesh> model = std::make_shared<Cpain::Mesh>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 0.0f, 0.0f });
-			Cpain::Transform transform{ this->transform.position, this->transform.rotation, 0.2f };
-			auto bullet = std::make_unique<Bullet>(transform);
+			Cpain::Transform transform{ owner->transform.position, owner->transform.rotation, 0.2f };
+			auto bullet = std::make_unique<Actor>(transform);
 			bullet->speed = 3.0f;
 			bullet->lifespan = 1.0f;
 			bullet->name = "bullet";
