@@ -190,7 +190,7 @@ void SpaceGame::spawnEnemy() {
 
 
         auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
-        spriteRenderer->textureName = "Enemy.png";
+        spriteRenderer->textureName = "enemy.png";
         enemy->addComponent(std::move(spriteRenderer));
 
         auto rb = std::make_unique<Cpain::RigidBody>();

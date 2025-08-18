@@ -5,7 +5,10 @@ namespace Cpain {
 
 	bool Mesh::load(const std::string filename) {
 		std::string buffer;
-		readTextFile(filename, buffer);
+		if (!readTextFile(filename, buffer)) {
+			Logger::Error("Could not read file: {}", filename);
+			return false;
+		}
 
 		std::stringstream stream(buffer);
 
@@ -16,7 +19,12 @@ namespace Cpain {
 			m_points.push_back(point);
 		}
 
-		return false;
+		if (stream.eof()) {
+			Logger::Error("Could not parse file: {}", filename);
+			return false;
+		}
+
+		return true;
 	}
 
 	

@@ -1,1 +1,13 @@
 #pragma once
+#include "RendererComponent.h"
+
+namespace Cpain {
+	class MeshRenderer : public RendererComponent {
+	public:
+		std::string meshName;
+
+	public:
+		void update(float deltaTime) override;
+		void draw(Renderer& renderer) override;
+	};
+}

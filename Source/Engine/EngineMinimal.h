@@ -31,10 +31,12 @@
 #include "Math/Vector3.h"
 
 // Components
+#include "Components/AudioSource.h"
 #include "Components/RendererComponent.h"
 #include "Components/RigidBody.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/ColliderComponent.h"
+#include "Components/MeshRenderer.h"
 #include "Components/CircleCollider2D.h"
 
 // Renderer
