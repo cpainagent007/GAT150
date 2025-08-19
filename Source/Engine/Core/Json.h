@@ -6,16 +6,22 @@
 #include <rapidjson/document.h>
 #include <string>
 
-#define JSON_READ(value, data) Cpain::Json::read(value, #data, data)
+#define JSON_READ(value, data)			  Cpain::Json::read(value, #data, data)
+#define JSON_READ_NAME(value, name, data) Cpain::Json::read(value, name, data)
+#define JSON_HAS(value, data)			  value.HasMember(#data)
+#define JSON_GET(value, data)			  value[#data]
 
-namespace Cpain::Json
-{
-	bool load(const std::string& filename, rapidjson::Document& document);
+namespace Cpain::Json {
 
-	bool read(const rapidjson::Value& value, const std::string& name, int& data);
-	bool read(const rapidjson::Value& value, const std::string& name, float& data);
-	bool read(const rapidjson::Value& value, const std::string& name, bool& data);
-	bool read(const rapidjson::Value& value, const std::string& name, std::string& data);
-	bool read(const rapidjson::Value& value, const std::string& name, vec2& data);
-	bool read(const rapidjson::Value& value, const std::string& name, vec3& data);
+	using value_t = rapidjson::Value;
+	using doc_t = rapidjson::Document;
+
+	bool load(const std::string& filename, doc_t& document);
+
+	bool read(const value_t& value, const std::string& name, int& data);
+	bool read(const value_t& value, const std::string& name, float& data);
+	bool read(const value_t& value, const std::string& name, bool& data);
+	bool read(const value_t& value, const std::string& name, std::string& data);
+	bool read(const value_t& value, const std::string& name, vec2& data);
+	bool read(const value_t& value, const std::string& name, vec3& data);
 }

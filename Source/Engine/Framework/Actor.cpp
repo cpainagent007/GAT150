@@ -2,6 +2,8 @@
 #include "../Renderer/Renderer.h"
 
 namespace Cpain {
+
+	FACTORY_REGISTER(Actor)
 		
 	void Actor::update(float deltaTime) {
 		if (!active) return;
@@ -40,6 +42,15 @@ namespace Cpain {
 	void Actor::addComponent(std::unique_ptr<Component> component) {
 		component->owner = this;
 		m_components.push_back(std::move(component));
+	}
+
+	void Actor::read(const Json::value_t& value) {
+		Object::read(value);
+
+		JSON_READ(value, tag);
+		JSON_READ(value, lifespan);
+
+		if(JSON_HAS(value, transform)) transform.read(JSON_GET(value, transform));
 	}
 
 }

@@ -3,6 +3,7 @@
 #include "Framework/Object.h"
 #include "Singleton.h"
 #include "StringHelper.h"
+#include "Logger.h"
 #include <map>
 #include <memory>
 #include <string>
@@ -13,7 +14,8 @@ public:                             \
     Register##classname() {         \
         Cpain::Factory::instance().registerItem<classname>(#classname); \
     }                               \
-};
+};									\
+Register##classname register_instance;
 
 namespace Cpain {
 	class CreatorBase {
@@ -62,10 +64,18 @@ namespace Cpain {
 		auto iter = m_registry.find(key);
 
 		if (iter != m_registry.end()) {
-			return iter->second->create();
-		}
+			auto object = iter->second->create();
+			T* derived = dynamic_cast<T*>(object.get());
 
-		Logger::Error("Could not create factory object: {}", name);
+			if (derived) {
+				object.release();
+				return std::unique_ptr<T>(derived);
+			}
+			Logger::Error("Factory object type mismatch: {}", name);
+
+		} else {
+			Logger::Error("Could not create factory object: {}", name);
+		}
 
 		return nullptr;
 	}

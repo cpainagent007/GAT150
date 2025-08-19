@@ -21,6 +21,10 @@ bool SpaceGame::initialize()
 {
     m_scene = std::make_unique<Cpain::Scene>(this);
 
+    Cpain::Json::doc_t document;
+    Cpain::Json::load("scene.json", document);
+    m_scene->read(document);
+
     m_titleText = std::make_unique<Cpain::Text>(Cpain::resources().getByID<Cpain::Font>("titleFont", "QuirkyRobot.ttf", 100.0f));
     m_scoreText = std::make_unique<Cpain::Text>(Cpain::resources().getByID<Cpain::Font>("uiFont", "QuirkyRobot.ttf", 50.0f));
     m_livesText = std::make_unique<Cpain::Text>(Cpain::resources().getByID<Cpain::Font>("uiFont", "QuirkyRobot.ttf", 50.0f));
@@ -52,6 +56,8 @@ void SpaceGame::update(float deltaTime)
     {
         m_scene->removeAll();
 
+        /*
+
         // create player
         std::shared_ptr<Cpain::Mesh> model = std::make_shared<Cpain::Mesh>(Cpain::playerPoints, Cpain::vec3{ 0.0f, 1.0f, 0.0f });
         Cpain::Transform transform{ Cpain::vec2{ Cpain::getEngine().getRenderer().getWidth() * 0.5f, Cpain::getEngine().getRenderer().getHeight() * 0.5f }, 0, 0.2f };
@@ -76,6 +82,9 @@ void SpaceGame::update(float deltaTime)
         player->addComponent(std::move(collider));
 
         m_scene->addActor(std::move(player));
+
+        */
+
         m_gameState = GameState::Playing;
     }
     break;
@@ -154,6 +163,9 @@ void SpaceGame::shutdown() {
 }
 
 void SpaceGame::spawnEnemy() {
+
+    /*
+
     Player* player = m_scene->getActorByName<Player>("player");
     if (player) {
         std::shared_ptr<Cpain::Mesh> enemyModel = std::make_shared<Cpain::Mesh>(Cpain::enemyPoints, Cpain::vec3{ 1.0f, Cpain::getReal() * 0.5f, Cpain::getReal() * 0.5f });
@@ -203,5 +215,9 @@ void SpaceGame::spawnEnemy() {
         
         enemy->tag = "enemy";
         m_scene->addActor(std::move(enemy));
+
     }
+
+    */
+
 }

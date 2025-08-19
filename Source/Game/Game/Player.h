@@ -29,7 +29,7 @@ public:
 
 	void update(float deltaTime) override;
 
-	void onCollision(class Actor* collider);
+	void onCollision(class Cpain::Actor* collider);
 
 	bool getMoving();
 

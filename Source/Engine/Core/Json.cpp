@@ -7,7 +7,7 @@
 
 namespace Cpain::Json
 {
-    bool load(const std::string& filename, rapidjson::Document& document) {
+    bool load(const std::string& filename, doc_t& document) {
         
         std::string buffer;
         if (!readTextFile(filename, buffer)) {
@@ -29,7 +29,7 @@ namespace Cpain::Json
     }
 
     // READ (int)
-    bool read(const rapidjson::Value& value, const std::string& name, int& data) {
+    bool read(const value_t& value, const std::string& name, int& data) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsInt()) {
             Logger::Error("Could not read Json value (int): {}.", name);
@@ -42,7 +42,7 @@ namespace Cpain::Json
     }
 
     // READ (float)
-    bool read(const rapidjson::Value& value, const std::string& name, float& data) {
+    bool read(const value_t& value, const std::string& name, float& data) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsFloat()) {
             Logger::Error("Could not read Json value (float): {}.", name);
@@ -55,7 +55,7 @@ namespace Cpain::Json
     }
 
     // READ (bool)
-    bool read(const rapidjson::Value& value, const std::string& name, bool& data) {
+    bool read(const value_t& value, const std::string& name, bool& data) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsBool()) {
             Logger::Error("Could not read Json value (bool): {}.", name);
@@ -68,7 +68,7 @@ namespace Cpain::Json
     }
 
     // READ (string)
-    bool read(const rapidjson::Value& value, const std::string& name, std::string& data) {
+    bool read(const value_t& value, const std::string& name, std::string& data) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsString()) {
             Logger::Error("Could not read Json value (string): {}.", name);
@@ -81,7 +81,7 @@ namespace Cpain::Json
     }
 
     // READ (vector2)
-    bool read(const rapidjson::Value& value, const std::string& name, vec2& data) {
+    bool read(const value_t& value, const std::string& name, vec2& data) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2) {
             Logger::Error("Could not read Json value (vec2): {}.", name);
@@ -103,7 +103,7 @@ namespace Cpain::Json
     }
 
     // READ (vector3)
-    bool read(const rapidjson::Value& value, const std::string& name, vec3& data) {
+    bool read(const value_t& value, const std::string& name, vec3& data) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 3) {
             Logger::Error("Could not read Json value (vec3): {}.", name);

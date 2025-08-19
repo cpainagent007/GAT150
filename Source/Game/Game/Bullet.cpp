@@ -12,6 +12,9 @@ FACTORY_REGISTER(Bullet)
 
 
 void Bullet::update(float deltaTime) {
+
+	/*
+
 	Cpain::vec2 inputDirection{ 1, 0 };
 
 
@@ -38,10 +41,13 @@ void Bullet::update(float deltaTime) {
 
 
 	Actor::update(deltaTime);
+
+	*/
+
 }
 
-void Bullet::onCollision(Actor* collider){
-	if (tag != collider->tag) {
+void Bullet::onCollision(Cpain::Actor* collider){
+	if (owner->tag != collider->tag) {
 		active = false;
 	}
 }

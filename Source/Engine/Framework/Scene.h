@@ -11,7 +11,7 @@ namespace Cpain {
 	class Actor;
 	class Game;
 
-	class Scene {
+	class Scene : public Serializable {
 	public:
 		Scene(Game* game) : m_game{ game } {}
 
@@ -27,6 +27,8 @@ namespace Cpain {
 		std::vector<T*> getActorByTag(const std::string& tag);
 
 		class Game* getGame() const { return m_game; }
+
+		void read(const Json::value_t& value) override;
 
 	private:
 		class Game* m_game = nullptr;

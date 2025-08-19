@@ -10,6 +10,7 @@
 #include "Core/Json.h"
 #include "Core/Logger.h"
 #include "Core/Random.h"
+#include "Core/Serializable.h"
 #include "Core/Singleton.h"
 #include "Core/StringHelper.h"
 #include "Core/Time.h"

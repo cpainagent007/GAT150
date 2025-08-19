@@ -21,4 +21,10 @@ namespace Cpain {
 
 	}
 
+	void SpriteRenderer::read(const Json::value_t& value) {
+		Object::read(value);
+
+		JSON_READ(value, textureName);
+	}
+
 }

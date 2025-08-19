@@ -17,8 +17,10 @@ FACTORY_REGISTER(Player)
 
 void Player::update(float deltaTime) {
 
+	
+
 	Cpain::Particle particle;
-	particle.position = transform.position;
+	particle.position = owner->transform.position;
 	particle.velocity = Cpain::vec2{ (Cpain::getReal() + 1) * 100, (Cpain::getReal() + 1) * 100 };
 	particle.color = Cpain::vec3{ 1.0f, Cpain::getReal(0.5f, 0.9f), 0.0f };
 	particle.lifetime = 2;
@@ -29,22 +31,24 @@ void Player::update(float deltaTime) {
 	float rotate = 0;
 	if (Cpain::getEngine().getInput().getKeyDown(SDL_SCANCODE_A)) rotate = -1;
 	if (Cpain::getEngine().getInput().getKeyDown(SDL_SCANCODE_D)) rotate = +1;
-	transform.rotation += (rotate * rotationSpeed) * deltaTime;
+	owner->transform.rotation += (rotate * rotationSpeed) * deltaTime;
 
 	thrust = 0;
 	if (Cpain::getEngine().getInput().getKeyDown(SDL_SCANCODE_W)) thrust = +1;
 	if (Cpain::getEngine().getInput().getKeyDown(SDL_SCANCODE_S)) thrust = -1;
 
 	Cpain::vec2 inputDirection{ 1, 0 };
-	Cpain::vec2 force = inputDirection.rotate(Cpain::degToRad(transform.rotation)) * thrust * shipSpeed;
+	Cpain::vec2 force = inputDirection.rotate(Cpain::degToRad(owner->transform.rotation)) * thrust * shipSpeed;
 	
-	auto* rb = getComponent<Cpain::RigidBody>();
+	auto* rb = owner->getComponent<Cpain::RigidBody>();
 	if (rb) {
 		rb->velocity += force * deltaTime;
 	}
 
-	transform.position.x = Cpain::wrap(transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
-	transform.position.y = Cpain::wrap(transform.position.y, 0.0f, (float)Cpain::getEngine().getRenderer().getHeight());
+	owner->transform.position.x = Cpain::wrap(owner->transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
+	owner->transform.position.y = Cpain::wrap(owner->transform.position.y, 0.0f, (float)Cpain::getEngine().getRenderer().getHeight());
+
+	/*
 
 	fireTimer -= deltaTime;
 	if (Cpain::getEngine().getInput().getKeyDown(SDL_SCANCODE_SPACE) && fireTimer <= 0) {
@@ -100,12 +104,14 @@ void Player::update(float deltaTime) {
 
 	Actor::update(deltaTime);
 
+	*/
+
 }
 
-void Player::onCollision(Actor* collider){
-	if (tag != collider->tag) {
+void Player::onCollision(Cpain::Actor* collider){
+	if (owner->tag != collider->tag) {
 		active = false;
-		dynamic_cast<SpaceGame*>(scene->getGame())->onPlayerDeath();
+		dynamic_cast<SpaceGame*>(owner->scene->getGame())->onPlayerDeath();
 	}
 }
 

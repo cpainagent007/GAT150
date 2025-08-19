@@ -58,6 +58,15 @@ namespace Cpain {
 	void Scene::removeAll() {
 		m_actors.clear();
 	}
+
+	void Scene::read(const Json::value_t& value) {
+		for (auto& actorValue : value["actors"].GetArray()) {
+			auto actor = Factory::instance().create<Actor>("Actor");
+			actor->read(actorValue);
+
+			addActor(std::move(actor));
+		}
+	}
 }
 
 

@@ -41,8 +41,11 @@ namespace Cpain {
 		template <typename T>
 		std::vector<T*> getComponents();
 
+		void read(const Json::value_t& value) override;
+
 	protected:
 		std::vector<std::unique_ptr<class Component>> m_components;
+		
 	};
 
 	template <typename T>
