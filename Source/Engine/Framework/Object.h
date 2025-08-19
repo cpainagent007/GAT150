@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Core/Serializable.h"
+
 namespace Cpain {
 	class Object : public Serializable {
 	public:
@@ -8,7 +10,7 @@ namespace Cpain {
 
 	public:
 		Object() = default;
-		virtual ~Object() = default;
+		~Object() = default;
 
 		void read(const Json::value_t& value) override;
 	};
