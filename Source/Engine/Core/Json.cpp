@@ -15,6 +15,8 @@ namespace Cpain::Json
             return false;
         }
 
+        Logger::Info("JSON Loaded: {}", buffer);
+
         std::stringstream stream(buffer);
         rapidjson::IStreamWrapper istream(stream);
 

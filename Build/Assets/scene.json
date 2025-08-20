@@ -2,7 +2,7 @@
   "actors": [
     {
       "name": "sprite",
-      "tag": "test",
+      "tag": "background",
       "lifespan":  1,
       "transform": {
         "position": [ 400, 300 ],
@@ -12,7 +12,7 @@
       "components": [
         {
           "type": "SpriteRenderer",
-          "textureName": "SpongeShrug.png"
+          "textureName": "SpaceBackground.jpg"
         }
       ]
     }

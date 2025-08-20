@@ -2,7 +2,6 @@
 #include "../Renderer/Renderer.h"
 
 namespace Cpain {
-
 	FACTORY_REGISTER(Actor)
 		
 	void Actor::update(float deltaTime) {
@@ -51,6 +50,19 @@ namespace Cpain {
 		JSON_READ(value, lifespan);
 
 		if(JSON_HAS(value, transform)) transform.read(JSON_GET(value, transform));
+
+		if (JSON_HAS(value, components)) {
+			for (auto& componentValue : JSON_GET(value, components).GetArray()) {
+				std::string type;
+				JSON_READ(componentValue, type);
+
+
+				auto component = Factory::instance().create<Component>(type);
+				component->read(componentValue);
+
+				addComponent(std::move(component));
+			}
+		}
 	}
 
 }

@@ -12,6 +12,6 @@ namespace Cpain {
 		Object() = default;
 		~Object() = default;
 
-		void read(const Json::value_t& value) override;
+		void read(const rapidjson::Value& value) override;
 	};
 }

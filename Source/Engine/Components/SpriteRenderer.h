@@ -9,7 +9,7 @@ namespace Cpain {
 		void update(float deltaTime) override;
 		void draw(Renderer& renderer) override;
 
-		void read(const Json::value_t& value) override;
+		void read(const Json::value_t& value);
 
 	};
 }

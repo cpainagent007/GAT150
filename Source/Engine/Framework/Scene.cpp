@@ -60,11 +60,13 @@ namespace Cpain {
 	}
 
 	void Scene::read(const Json::value_t& value) {
-		for (auto& actorValue : value["actors"].GetArray()) {
-			auto actor = Factory::instance().create<Actor>("Actor");
-			actor->read(actorValue);
+		if (JSON_HAS(value, actors)) {
+			for (auto& actorValue : JSON_GET(value, actors).GetArray()) {
+				auto actor = Factory::instance().create<Actor>("Actor");
+				actor->read(actorValue);
 
-			addActor(std::move(actor));
+				addActor(std::move(actor));
+			}
 		}
 	}
 }

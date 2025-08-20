@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Core/StringHelper.h"
+#include "../Core/Factory.h"
 
 #include <list>
 #include <vector>

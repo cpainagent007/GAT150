@@ -5,6 +5,8 @@
 #include "Scene.h"
 #include "../Renderer/Texture.h"
 #include "Object.h"
+#include "../Components/RendererComponent.h"
+#include "../Core/Factory.h"
 
 #include <memory>
 #include <vector>
@@ -15,7 +17,6 @@ namespace Cpain {
 	public:
 		std::string tag;
 
-		bool active = true;
 		float lifespan = 0.0f;
 
 		Transform transform;
@@ -31,7 +32,7 @@ namespace Cpain {
 
 		Transform& getTransform() { return transform; }
 
-		virtual void onCollision(Actor* collider) = 0;
+		virtual void onCollision(Actor* collider) {}
 
 		void addComponent(std::unique_ptr<class Component> component);
 

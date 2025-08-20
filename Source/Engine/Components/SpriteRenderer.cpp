@@ -8,7 +8,7 @@ namespace Cpain {
 	}
 
 	void SpriteRenderer::draw(Renderer& renderer) {
-		auto texture = resources().get<Texture>(textureName, renderer).get();
+		auto texture = resources().get<Texture>(textureName, renderer);
 
 		if (texture) {
 			renderer.drawTexture(*texture,
