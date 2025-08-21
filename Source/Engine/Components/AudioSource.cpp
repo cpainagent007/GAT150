@@ -15,4 +15,10 @@ namespace Cpain {
 			getEngine().getAudio().playSound(*audioClip);
 		}
 	}
+
+	void AudioSource::read(const Json::value_t& value) {
+		Object::read(value);
+
+		JSON_READ(value, audioClipName);
+	}
 }

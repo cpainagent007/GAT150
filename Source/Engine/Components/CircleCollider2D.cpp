@@ -18,4 +18,10 @@ namespace Cpain {
         return false;
     }
 
+    void CircleCollider2D::read(const Json::value_t& value) {
+        Object::read(value);
+
+        JSON_READ(value, radius);
+    }
+
 }

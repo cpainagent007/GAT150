@@ -118,3 +118,11 @@ void Player::onCollision(Cpain::Actor* collider){
 bool Player::getMoving() {
 	return (thrust > 0);
 }
+
+void Player::read(const Cpain::Json::value_t& value) {
+	Object::read(value);
+
+	JSON_READ(value, shipSpeed);
+	JSON_READ(value, rotationSpeed);
+	JSON_READ(value, fireRate);
+}

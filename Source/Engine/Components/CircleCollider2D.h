@@ -11,5 +11,7 @@ namespace Cpain {
 
 		bool checkCollision(ColliderComponent& other) override;
 
+		void read(const Json::value_t& value);
+
 	};
 }

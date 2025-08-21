@@ -31,10 +31,10 @@ namespace Cpain::Json
     }
 
     // READ (int)
-    bool read(const value_t& value, const std::string& name, int& data) {
+    bool read(const value_t& value, const std::string& name, int& data, bool required) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsInt()) {
-            Logger::Error("Could not read Json value (int): {}.", name);
+            if (required) Logger::Error("Could not read Json value (int): {}.", name);
             return false;
         }
 
@@ -44,10 +44,10 @@ namespace Cpain::Json
     }
 
     // READ (float)
-    bool read(const value_t& value, const std::string& name, float& data) {
+    bool read(const value_t& value, const std::string& name, float& data, bool required) {
 
-        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsFloat()) {
-            Logger::Error("Could not read Json value (float): {}.", name);
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsNumber()) {
+            if (required) Logger::Error("Could not read Json value (float): {}.", name);
             return false;
         }
 
@@ -57,10 +57,10 @@ namespace Cpain::Json
     }
 
     // READ (bool)
-    bool read(const value_t& value, const std::string& name, bool& data) {
+    bool read(const value_t& value, const std::string& name, bool& data, bool required) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsBool()) {
-            Logger::Error("Could not read Json value (bool): {}.", name);
+            if (required) Logger::Error("Could not read Json value (bool): {}.", name);
             return false;
         }
 
@@ -70,10 +70,10 @@ namespace Cpain::Json
     }
 
     // READ (string)
-    bool read(const value_t& value, const std::string& name, std::string& data) {
+    bool read(const value_t& value, const std::string& name, std::string& data, bool required) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsString()) {
-            Logger::Error("Could not read Json value (string): {}.", name);
+            if (required) Logger::Error("Could not read Json value (string): {}.", name);
             return false;
         }
 
@@ -83,10 +83,10 @@ namespace Cpain::Json
     }
 
     // READ (vector2)
-    bool read(const value_t& value, const std::string& name, vec2& data) {
+    bool read(const value_t& value, const std::string& name, vec2& data, bool required) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2) {
-            Logger::Error("Could not read Json value (vec2): {}.", name);
+            if (required) Logger::Error("Could not read Json value (vec2): {}.", name);
             return false;
         }
 
@@ -105,10 +105,10 @@ namespace Cpain::Json
     }
 
     // READ (vector3)
-    bool read(const value_t& value, const std::string& name, vec3& data) {
+    bool read(const value_t& value, const std::string& name, vec3& data, bool required) {
 
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 3) {
-            Logger::Error("Could not read Json value (vec3): {}.", name);
+            if (required) Logger::Error("Could not read Json value (vec3): {}.", name);
             return false;
         }
 

@@ -8,5 +8,7 @@ namespace Cpain {
 
 	public:
 		void update(float deltaTime) override;
+
+		void read(const Json::value_t& value);
 	};
 }

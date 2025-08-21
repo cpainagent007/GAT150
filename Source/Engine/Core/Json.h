@@ -18,10 +18,10 @@ namespace Cpain::Json {
 
 	bool load(const std::string& filename, doc_t& document);
 
-	bool read(const value_t& value, const std::string& name, int& data);
-	bool read(const value_t& value, const std::string& name, float& data);
-	bool read(const value_t& value, const std::string& name, bool& data);
-	bool read(const value_t& value, const std::string& name, std::string& data);
-	bool read(const value_t& value, const std::string& name, vec2& data);
-	bool read(const value_t& value, const std::string& name, vec3& data);
+	bool read(const value_t& value, const std::string& name, int& data, bool required = false);
+	bool read(const value_t& value, const std::string& name, float& data, bool required = false);
+	bool read(const value_t& value, const std::string& name, bool& data, bool required = false);
+	bool read(const value_t& value, const std::string& name, std::string& data, bool required = false);
+	bool read(const value_t& value, const std::string& name, vec2& data, bool required = false);
+	bool read(const value_t& value, const std::string& name, vec3& data, bool required = false);
 }

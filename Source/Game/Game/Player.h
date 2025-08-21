@@ -33,4 +33,5 @@ public:
 
 	bool getMoving();
 
+	void read(const Cpain::Json::value_t& value);
 };

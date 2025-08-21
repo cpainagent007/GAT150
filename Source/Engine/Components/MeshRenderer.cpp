@@ -15,4 +15,10 @@ namespace Cpain {
 			mesh->draw(renderer, owner->transform);
 		}
 	}
+
+	void MeshRenderer::read(const Json::value_t& value) {
+		Object::read(value);
+		
+		JSON_READ(value, meshName);
+	}
 }

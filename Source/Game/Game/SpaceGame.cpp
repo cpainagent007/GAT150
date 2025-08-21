@@ -56,35 +56,6 @@ void SpaceGame::update(float deltaTime)
     {
         m_scene->removeAll();
 
-        /*
-
-        // create player
-        std::shared_ptr<Cpain::Mesh> model = std::make_shared<Cpain::Mesh>(Cpain::playerPoints, Cpain::vec3{ 0.0f, 1.0f, 0.0f });
-        Cpain::Transform transform{ Cpain::vec2{ Cpain::getEngine().getRenderer().getWidth() * 0.5f, Cpain::getEngine().getRenderer().getHeight() * 0.5f }, 0, 0.2f };
-        auto player = std::make_unique<Player>(transform);
-        player->shipSpeed = 1000.0f;
-        player->rotationSpeed = 180.0f;
-        player->name = "player";
-        player->tag = "player";
-        player->weapon = Player::Weapon::Rocket;
-
-
-        auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
-        spriteRenderer->textureName = "Ship.png";
-        player->addComponent(std::move(spriteRenderer));
-
-        auto rb = std::make_unique<Cpain::RigidBody>();
-        rb->damping = 1.5f;
-        player->addComponent(std::move(rb));
-
-        auto collider = std::make_unique<Cpain::CircleCollider2D>();
-        collider->radius = 60;
-        player->addComponent(std::move(collider));
-
-        m_scene->addActor(std::move(player));
-
-        */
-
         m_gameState = GameState::Playing;
     }
     break;
@@ -134,6 +105,8 @@ void SpaceGame::update(float deltaTime)
 
 void SpaceGame::draw(Cpain::Renderer& renderer) {
 
+    m_scene->draw(renderer);
+
     if (m_gameState == GameState::Title) {
         m_titleText->create(renderer, "Space Game", Cpain::vec3{ 1, 1, 1 });
         m_titleText->draw(renderer, (float)(renderer.getWidth() * 0.5f) - 200.0f, 50.0f);
@@ -147,8 +120,6 @@ void SpaceGame::draw(Cpain::Renderer& renderer) {
     m_scoreText->draw(renderer, 10.0f, 10.0f);
     m_livesText->create(renderer, "Lives: " + std::to_string(m_lives), Cpain::vec3{ 1, 1, 1 });
     m_livesText->draw(renderer, 10.0f, 50.0f);
-
-    m_scene->draw(renderer);
 
     Cpain::getEngine().getParticleSystem().draw(renderer);
 }
