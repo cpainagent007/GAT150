@@ -9,6 +9,8 @@ public:
 public:
 	Bullet() = default;
 
+	CLASS_PROTOTYPE(Bullet)
+
 	void update(float deltaTime) override;
 
 	void onCollision(class Cpain::Actor* collider);

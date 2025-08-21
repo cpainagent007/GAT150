@@ -2,7 +2,6 @@
 
 #include "../Math/Transform.h"
 #include "../Renderer/Mesh.h"
-#include "Scene.h"
 #include "../Renderer/Texture.h"
 #include "Object.h"
 #include "../Components/RendererComponent.h"
@@ -18,6 +17,7 @@ namespace Cpain {
 		std::string tag;
 
 		float lifespan = 0.0f;
+		bool persistent = false;
 
 		Transform transform;
 		Scene* scene = nullptr;
@@ -26,6 +26,10 @@ namespace Cpain {
 		Actor() = default;
 		Actor(const Transform& transform)
 			: transform{ transform } {}
+
+		Actor(const Actor& other);
+
+		CLASS_PROTOTYPE(Actor)
 
 		virtual void update(float deltaTime);
 		virtual void draw(class Renderer& renderer);

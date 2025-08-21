@@ -56,6 +56,9 @@ void SpaceGame::update(float deltaTime)
     {
         m_scene->removeAll();
 
+        auto player = Cpain::instantiate("player");
+        m_scene->addActor(std::move(player));
+
         m_gameState = GameState::Playing;
     }
     break;
@@ -134,61 +137,35 @@ void SpaceGame::shutdown() {
 }
 
 void SpaceGame::spawnEnemy() {
-
-    /*
-
-    Player* player = m_scene->getActorByName<Player>("player");
-    if (player) {
-        std::shared_ptr<Cpain::Mesh> enemyModel = std::make_shared<Cpain::Mesh>(Cpain::enemyPoints, Cpain::vec3{ 1.0f, Cpain::getReal() * 0.5f, Cpain::getReal() * 0.5f });
-
-        Cpain::vec2 position = player->transform.position + Cpain::onUnitCircle() * Cpain::getReal(500.0f, 700.0f);
-        Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.5f};
-
-        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform);
-        int choice = Cpain::getInt(0, 3);
-        switch (choice) {
-        case 0:
-            enemy->type = Enemy::Type::Basic;
-            enemy->speed = (Cpain::getReal() * 400) + 300;
-            enemy->fireTimer = 0;
-            break;
-        case 1:
-            enemy->type = Enemy::Type::Fast;
-            enemy->speed = (Cpain::getReal() * 800) + 600;
-            enemy->fireTimer = 0;
-            enemy->transform.scale = enemy->transform.scale * 0.5f;
-            break;
-        case 2:
-            enemy->type = Enemy::Type::Shooter;
-            enemy->speed = (Cpain::getReal() * 400) + 300;
-            enemy->fireTimer = 5;
-            break;
-        case 3:
-            enemy->type = Enemy::Type::Mega;
-            enemy->speed = 100;
-            enemy->fireTimer = 0;
-            enemy->transform.scale = enemy->transform.scale * 1.2f;
-            break;
-        }
-
-
-        auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
-        spriteRenderer->textureName = "enemy.png";
-        enemy->addComponent(std::move(spriteRenderer));
-
-        auto rb = std::make_unique<Cpain::RigidBody>();
-        rb->damping = 0.5f;
-        enemy->addComponent(std::move(rb));
-
-        auto collider = std::make_unique<Cpain::CircleCollider2D>();
-        collider->radius = 60;
-        enemy->addComponent(std::move(collider));
-        
-        enemy->tag = "enemy";
-        m_scene->addActor(std::move(enemy));
-
+    Cpain::Actor* player = m_scene->getActorByName<Cpain::Actor>("player");
+    Cpain::vec2 position = player->transform.position + Cpain::onUnitCircle() * Cpain::getReal(200.0f, 500.0f);
+    Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.0f };
+    auto enemy = Cpain::instantiate("enemy");
+    int choice = Cpain::getInt(0, 3);
+    switch (choice) {
+    case 0:
+        enemy->type = Enemy::Type::Basic;
+        enemy->speed = (Cpain::getReal() * 400) + 300;
+        enemy->fireTimer = 0;
+        break;
+    case 1:
+        enemy->type = Enemy::Type::Fast;
+        enemy->speed = (Cpain::getReal() * 800) + 600;
+        enemy->fireTimer = 0;
+        enemy->transform.scale = enemy->transform.scale * 0.5f;
+        break;
+    case 2:
+        enemy->type = Enemy::Type::Shooter;
+        enemy->speed = (Cpain::getReal() * 400) + 300;
+        enemy->fireTimer = 5;
+        break;
+    case 3:
+        enemy->type = Enemy::Type::Mega;
+        enemy->speed = 100;
+        enemy->fireTimer = 0;
+        enemy->transform.scale = enemy->transform.scale * 1.2f;
+        break;
     }
-
-    */
+    m_scene->addActor(std::move(enemy));
 
 }

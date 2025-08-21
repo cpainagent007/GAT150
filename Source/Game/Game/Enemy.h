@@ -22,6 +22,8 @@ public:
 public:
 	Enemy() = default;
 
+	CLASS_PROTOTYPE(Enemy)
+
 	void onCollision(class Cpain::Actor* collider);
 
 	void update(float deltaTime) override;

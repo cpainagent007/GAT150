@@ -3,7 +3,7 @@
 
 namespace Cpain {
 	FACTORY_REGISTER(Actor)
-		
+	
 	void Actor::update(float deltaTime) {
 		if (!active) return;
 
@@ -23,6 +23,15 @@ namespace Cpain {
 		}
 
 		
+	}
+
+	Actor::Actor(const Actor& other) : Object{ other },
+	tag{ other.tag }, lifespan{ other.lifespan }, transform{ other.transform }
+	{
+		for (auto& component : other.m_components) {
+			auto clone = std::unique_ptr<Component>(dynamic_cast<Component*>(component->clone().release()));
+			addComponent(std::move(clone));
+		}
 	}
 
 	void Actor::draw(Renderer& renderer) {
@@ -48,6 +57,7 @@ namespace Cpain {
 
 		JSON_READ(value, tag);
 		JSON_READ(value, lifespan);
+		JSON_READ(value, persistent);
 
 		if(JSON_HAS(value, transform)) transform.read(JSON_GET(value, transform));
 

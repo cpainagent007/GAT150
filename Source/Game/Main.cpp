@@ -36,8 +36,17 @@
 
 int main(int argc, char* argv[]) {
 
+    // Set Directory
+
 	Cpain::setCurrentDirectory("Assets");
     Cpain::Logger::Info("Current Directory {}", Cpain::getCurrentDirectory());
+
+    // Testing
+    // ----------
+
+    //return 0;
+
+    // ----------
 
     // Initialize SDL/Renderer
 
@@ -47,10 +56,6 @@ int main(int argc, char* argv[]) {
 
 	std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();
 	game->initialize();
-
-    // Add Sounds
-
-	Cpain::getEngine().getAudio().addSound("bass.wav", "bass");
 
 	// Additional Initialization
 

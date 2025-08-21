@@ -6,6 +6,8 @@ namespace Cpain {
 		std::string textureName;
 
 	public:
+		CLASS_PROTOTYPE(SpriteRenderer)
+
 		void update(float deltaTime) override;
 		void draw(Renderer& renderer) override;
 

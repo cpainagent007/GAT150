@@ -55,11 +55,28 @@ namespace Cpain {
 		m_actors.push_back(std::move(actor));
 	}
 
-	void Scene::removeAll() {
-		m_actors.clear();
+	void Scene::removeAll(bool force) {
+		for (auto iter = m_actors.begin(); iter != m_actors.end();) {
+			if (!(*iter)->persistent || force) {
+				iter = m_actors.erase(iter);
+			}
+			else {
+				iter++;
+			}
+		}
 	}
 
 	void Scene::read(const Json::value_t& value) {
+		if (JSON_HAS(value, prototypes)) {
+			for (auto& protoValue : JSON_GET(value, prototypes).GetArray()) {
+				auto actor = Factory::instance().create<Actor>("Actor");
+				actor->read(protoValue);
+
+				std::string name = actor->name;
+				Factory::instance().registerPrototype<Actor>(name, std::move(actor));
+			}
+		}
+
 		if (JSON_HAS(value, actors)) {
 			for (auto& actorValue : JSON_GET(value, actors).GetArray()) {
 				auto actor = Factory::instance().create<Actor>("Actor");

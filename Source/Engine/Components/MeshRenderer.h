@@ -7,6 +7,8 @@ namespace Cpain {
 		std::string meshName;
 
 	public:
+		CLASS_PROTOTYPE(MeshRenderer)
+
 		void update(float deltaTime) override;
 		void draw(Renderer& renderer) override;
 

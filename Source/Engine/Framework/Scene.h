@@ -19,7 +19,8 @@ namespace Cpain {
 		void update(float deltaTime);
 		void draw(class Renderer& renderer);
 		void addActor(std::unique_ptr<class Actor>);
-		void removeAll();
+
+		void removeAll(bool force = false);
 
 		template<typename T = Actor>
 		T* getActorByName(const std::string& name);

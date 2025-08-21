@@ -6,6 +6,7 @@ namespace Cpain {
 		float radius = 0.0f;
 
 	public:
+		CLASS_PROTOTYPE(CircleCollider2D)
 
 		void update(float deltaTime) override;
 
