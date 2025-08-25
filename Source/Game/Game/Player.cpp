@@ -48,6 +48,7 @@ void Player::update(float deltaTime) {
 	owner->transform.position.x = Cpain::wrap(owner->transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
 	owner->transform.position.y = Cpain::wrap(owner->transform.position.y, 0.0f, (float)Cpain::getEngine().getRenderer().getHeight());
 
+	// Player Projectile Behavior
 	/*
 
 	fireTimer -= deltaTime;

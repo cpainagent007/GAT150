@@ -49,6 +49,8 @@ void Enemy::update(float deltaTime) {
 	owner->transform.position.x = Cpain::wrap(owner->transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
 	owner->transform.position.y = Cpain::wrap(owner->transform.position.y, 0.0f, (float)Cpain::getEngine().getRenderer().getHeight());
 
+	// Enemy Type Behavior
+	/*
 	switch (type) {
 	case Type::Basic:
 		break;
@@ -62,7 +64,6 @@ void Enemy::update(float deltaTime) {
 			std::shared_ptr<Cpain::Mesh> model = std::make_shared<Cpain::Mesh>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 0.0f, 0.0f });
 			Cpain::Transform transform{ owner->transform.position, owner->transform.rotation, 0.2f };
 			auto bullet = std::make_unique<Cpain::Actor>(transform);
-			bullet->speed = 3.0f;
 			bullet->lifespan = 1.0f;
 			bullet->name = "bullet";
 			bullet->tag = "enemy";
@@ -79,14 +80,14 @@ void Enemy::update(float deltaTime) {
 			collider->radius = 30;
 			bullet->addComponent(std::move(collider));
 
-			scene->addActor(std::move(bullet));
+			owner->scene->addActor(std::move(bullet));
 
 		}
 		break;
 	case Type::Mega:
 		break;
 	}
-	
+	*/
 
 	update(deltaTime);
 

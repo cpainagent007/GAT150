@@ -1,5 +1,7 @@
 #pragma once
 
+#include <variant>
+
 namespace Cpain {
 	struct Event {
 		using id_t = std::string;

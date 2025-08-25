@@ -4,11 +4,16 @@
 
 class Player : public Cpain::Component, public Cpain::ICollidable {
 public:
+	// Player Projectile Enumeration
+	/*
 	enum class Weapon {
 		Rocket,
 		Rapid,
 		Super,
 	};
+	Weapon weapon;
+	*/
+	
 
 public:
 	const float rocketRate = 0.5f;
@@ -21,7 +26,7 @@ public:
 	float fireRate = 0.0f;
 	float fireTimer = 0.0f;
 	float thrust;
-	Weapon weapon;
+	
 
 
 public:

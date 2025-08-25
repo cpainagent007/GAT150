@@ -43,7 +43,7 @@
         },
         {
           "type": "SpriteRenderer",
-          "textureName": "EnemyShip.png"
+          "textureName": "Enemy.png"
         },
         {
           "type": "RigidBody",

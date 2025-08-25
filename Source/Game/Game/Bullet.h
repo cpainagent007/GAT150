@@ -5,6 +5,7 @@
 class Bullet : public Cpain::Component, public Cpain::ICollidable {
 public:
 	float speed = 100.0f;
+	Cpain::RigidBody* m_rigidBody = nullptr;
 
 public:
 	Bullet() = default;
@@ -15,4 +16,5 @@ public:
 
 	void onCollision(class Cpain::Actor* collider) override;
 
+	void start() override;
 };

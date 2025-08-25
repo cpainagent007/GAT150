@@ -67,10 +67,14 @@ void SpaceGame::update(float deltaTime)
             spawnEnemy();
         }
 
-        Player* player = m_scene->getActorByName<Player>("player");
+        // Player Projectile Types
+        /*
+         Player* player = m_scene->getActorByName<Player>("player");
         if (Cpain::getEngine().getInput().getKeyPressed(SDL_SCANCODE_1)) player->weapon = Player::Weapon::Rocket;
         if (Cpain::getEngine().getInput().getKeyPressed(SDL_SCANCODE_2)) player->weapon = Player::Weapon::Rapid;
         if (Cpain::getEngine().getInput().getKeyPressed(SDL_SCANCODE_3)) player->weapon = Player::Weapon::Super;
+        */
+       
 
         break;
     }
@@ -138,7 +142,10 @@ void SpaceGame::spawnEnemy() {
     Cpain::vec2 position = player->transform.position + Cpain::onUnitCircle() * Cpain::getReal(200.0f, 500.0f);
     Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.0f };
     auto enemy = Cpain::instantiate("enemy");
-    int choice = Cpain::getInt(0, 3);
+
+    // Enemy Types
+    /*
+     int choice = Cpain::getInt(0, 3);
     switch (choice) {
     case 0:
         enemy->type = Enemy::Type::Basic;
@@ -163,6 +170,8 @@ void SpaceGame::spawnEnemy() {
         enemy->transform.scale = enemy->transform.scale * 1.2f;
         break;
     }
+    */
+   
     m_scene->addActor(std::move(enemy));
 
 }

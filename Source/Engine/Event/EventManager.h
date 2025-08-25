@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Observer.h"
+
 namespace Cpain {
 	class EventManager : public Singleton<EventManager> {
 	public:

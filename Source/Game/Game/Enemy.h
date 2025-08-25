@@ -5,7 +5,9 @@
 
 class Enemy : public Cpain::Component, public Cpain::ICollidable {
 public:
-	enum class Type {
+	// Enemy Type Enumeration
+	/*
+		enum class Type {
 		Basic,
 		Fast,
 		Shooter,
@@ -13,6 +15,8 @@ public:
 	};
 
 	Type type = Type::Basic;
+	*/
+
 
 public:
 	float fireTimer = 0.0f;
