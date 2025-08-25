@@ -2,7 +2,7 @@
 
 #include "Framework/Component.h"
 
-class Bullet : public Cpain::Component {
+class Bullet : public Cpain::Component, public Cpain::ICollidable {
 public:
 	float speed = 100.0f;
 
@@ -13,6 +13,6 @@ public:
 
 	void update(float deltaTime) override;
 
-	void onCollision(class Cpain::Actor* collider);
+	void onCollision(class Cpain::Actor* collider) override;
 
 };

@@ -1,4 +1,5 @@
 #include "SpriteRenderer.h"
+#include <Engine.h>
 
 namespace Cpain {
 	FACTORY_REGISTER(SpriteRenderer)
@@ -25,6 +26,11 @@ namespace Cpain {
 		Object::read(value);
 
 		JSON_READ(value, textureName);
+	}
+
+	void SpriteRenderer::start() {
+		texture = resources().get<Texture>(textureName, getEngine().getRenderer());
+
 	}
 
 }

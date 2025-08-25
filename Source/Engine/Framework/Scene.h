@@ -12,13 +12,15 @@ namespace Cpain {
 	class Actor;
 	class Game;
 
-	class Scene : public Serializable {
+	class Scene : public ISerializable {
 	public:
 		Scene(Game* game) : m_game{ game } {}
 
 		void update(float deltaTime);
 		void draw(class Renderer& renderer);
-		void addActor(std::unique_ptr<class Actor>);
+		void addActor(std::unique_ptr<class Actor>, bool start = true);
+
+		bool load(const std::string& sceneName);
 
 		void removeAll(bool force = false);
 

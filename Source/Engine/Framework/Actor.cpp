@@ -75,4 +75,26 @@ namespace Cpain {
 		}
 	}
 
+	void Actor::start() {
+		for (auto& component : m_components) {
+			component->start();
+		}
+
+	}
+
+	void Actor::destroyed() {
+		for (auto& component : m_components) {
+			component->destroyed();
+		}
+
+	}
+
+	void Actor::onCollision(Actor* other) {
+		auto collidables = getComponents<ICollidable>();
+		for (auto& collidable : collidables) {
+			collidable->onCollision(other);
+		}
+
+	}
+
 }

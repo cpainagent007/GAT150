@@ -2,7 +2,7 @@
 
 #include "Framework/Component.h"
 
-class Player : public Cpain::Component {
+class Player : public Cpain::Component, public Cpain::ICollidable {
 public:
 	enum class Weapon {
 		Rocket,
@@ -31,7 +31,7 @@ public:
 
 	void update(float deltaTime) override;
 
-	void onCollision(class Cpain::Actor* collider);
+	void onCollision(class Cpain::Actor* collider) override;
 
 	bool getMoving();
 

@@ -14,6 +14,12 @@ namespace Cpain {
 		}
 
 		// Remove inactive
+
+		std::erase_if(m_actors, [](auto& actor) {
+			return (actor->active == false);
+		});
+
+		/*
 		for (auto iter = m_actors.begin(); iter != m_actors.end();) {
 			if ((*iter)->active == false) {
 				iter = m_actors.erase(iter);
@@ -22,6 +28,7 @@ namespace Cpain {
 				iter++;
 			}
 		}
+		*/
 
 		// Collision
 		for (auto& actorA : m_actors) {
@@ -50,8 +57,9 @@ namespace Cpain {
 		}
 	}
 
-	void Scene::addActor(std::unique_ptr<Actor> actor) {
+	void Scene::addActor(std::unique_ptr<Actor> actor, bool start) {
 		actor->scene = this;
+		if (start) actor->start();
 		m_actors.push_back(std::move(actor));
 	}
 
@@ -82,10 +90,26 @@ namespace Cpain {
 				auto actor = Factory::instance().create<Actor>("Actor");
 				actor->read(actorValue);
 
-				addActor(std::move(actor));
+				addActor(std::move(actor), false);
 			}
 		}
 	}
+
+	bool Scene::load(const std::string& sceneName) {
+		Json::doc_t document;
+		if (!Json::load(sceneName, document)) {
+			Logger::Error("Could not load scene {}", sceneName);
+			return false;
+		}
+		read(document);
+
+		for (auto& actor : m_actors) {
+			actor->start();
+		}
+
+		return true;
+	}
+
 }
 
 

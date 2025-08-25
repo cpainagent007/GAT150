@@ -3,7 +3,7 @@
 #include "Framework/Component.h"
 
 
-class Enemy : public Cpain::Component {
+class Enemy : public Cpain::Component, public Cpain::ICollidable {
 public:
 	enum class Type {
 		Basic,
@@ -19,13 +19,16 @@ public:
 	float fireRate = 1.0f;
 	float speed = 100.0f;
 
+	Cpain::RigidBody* m_rigidBody = nullptr;
+
 public:
 	Enemy() = default;
 
 	CLASS_PROTOTYPE(Enemy)
 
-	void onCollision(class Cpain::Actor* collider);
+	void onCollision(class Cpain::Actor* collider) override;
 
 	void update(float deltaTime) override;
 
+	void start() override;
 };

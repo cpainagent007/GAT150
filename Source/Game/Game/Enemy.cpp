@@ -19,11 +19,9 @@ FACTORY_REGISTER(Enemy)
 
 void Enemy::update(float deltaTime) {
 
-	/*
-
 	bool playerVisible = false;
 	
-	Actor* player = owner->scene->getActorByName<Actor>("player");
+	Cpain::Actor* player = owner->scene->getActorByName<Cpain::Actor>("player");
 	if (player) {
 		Cpain::vec2 direction{ 1, 0 };
 		direction = player->transform.position - owner->transform.position;
@@ -43,9 +41,8 @@ void Enemy::update(float deltaTime) {
 
 	Cpain::vec2 force = Cpain::vec2{ 1, 0 }.rotate(Cpain::degToRad(owner->transform.rotation)) * speed;
 
-	auto* rb = owner->getComponent<Cpain::RigidBody>();
-	if (rb) {
-		rb->velocity += force * deltaTime;
+	if (m_rigidBody) {
+		m_rigidBody->velocity += force * deltaTime;
 	}
 	
 
@@ -64,7 +61,7 @@ void Enemy::update(float deltaTime) {
 
 			std::shared_ptr<Cpain::Mesh> model = std::make_shared<Cpain::Mesh>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 0.0f, 0.0f });
 			Cpain::Transform transform{ owner->transform.position, owner->transform.rotation, 0.2f };
-			auto bullet = std::make_unique<Actor>(transform);
+			auto bullet = std::make_unique<Cpain::Actor>(transform);
 			bullet->speed = 3.0f;
 			bullet->lifespan = 1.0f;
 			bullet->name = "bullet";
@@ -91,9 +88,8 @@ void Enemy::update(float deltaTime) {
 	}
 	
 
-	Actor::update(deltaTime);
+	update(deltaTime);
 
-	*/
 }
 
 void Enemy::onCollision(Cpain::Actor* collider){
@@ -110,4 +106,9 @@ void Enemy::onCollision(Cpain::Actor* collider){
 	
 		}
 	}
+}
+
+void Enemy::start(){
+	m_rigidBody = owner->getComponent<Cpain::RigidBody>();
+	fireTimer = fireRate;
 }

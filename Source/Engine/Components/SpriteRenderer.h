@@ -4,6 +4,7 @@ namespace Cpain {
 	class SpriteRenderer : public RendererComponent {
 	public:
 		std::string textureName;
+		res_t<Texture> texture;
 
 	public:
 		CLASS_PROTOTYPE(SpriteRenderer)
@@ -12,6 +13,8 @@ namespace Cpain {
 		void draw(Renderer& renderer) override;
 
 		void read(const Json::value_t& value);
+
+		void start() override;
 
 	};
 }

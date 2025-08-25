@@ -31,6 +31,14 @@
 #include "Math/Vector2.h"
 #include "Math/Vector3.h"
 
+// Event
+#include "Event/Event.h"
+#include "Event/EventManager.h"
+#include "Event/Observer.h"
+
+// Physics
+#include "Physics/Collidable.h"
+
 // Components
 #include "Components/AudioSource.h"
 #include "Components/RendererComponent.h"
@@ -72,3 +80,4 @@
 #include <cmath>
 #include <filesystem>
 #include <fstream>
+#include <variant>

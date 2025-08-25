@@ -20,10 +20,7 @@
 bool SpaceGame::initialize()
 {
     m_scene = std::make_unique<Cpain::Scene>(this);
-
-    Cpain::Json::doc_t document;
-    Cpain::Json::load("scene.json", document);
-    m_scene->read(document);
+    m_scene->load("scene.json");
 
     m_titleText = std::make_unique<Cpain::Text>(Cpain::resources().getByID<Cpain::Font>("titleFont", "QuirkyRobot.ttf", 100.0f));
     m_scoreText = std::make_unique<Cpain::Text>(Cpain::resources().getByID<Cpain::Font>("uiFont", "QuirkyRobot.ttf", 50.0f));

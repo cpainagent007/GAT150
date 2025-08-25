@@ -1,9 +1,9 @@
 #pragma once
 
+#include "../Framework/Scene.h"
 #include "../Math/Transform.h"
 #include "../Renderer/Mesh.h"
 #include "../Renderer/Texture.h"
-#include "../Framework/Scene.h"
 #include "Object.h"
 #include "../Components/RendererComponent.h"
 #include "../Core/Factory.h"
@@ -21,7 +21,7 @@ namespace Cpain {
 		bool persistent = false;
 
 		Transform transform;
-		Scene* scene = nullptr;
+		class Scene* scene = nullptr;
 
 	public:
 		Actor() = default;
@@ -37,7 +37,7 @@ namespace Cpain {
 
 		Transform& getTransform() { return transform; }
 
-		virtual void onCollision(Actor* collider) {}
+		virtual void onCollision(Actor* other);
 
 		void addComponent(std::unique_ptr<class Component> component);
 
@@ -48,6 +48,9 @@ namespace Cpain {
 		std::vector<T*> getComponents();
 
 		void read(const Json::value_t& value) override;
+
+		virtual void start();
+		virtual void destroyed();
 
 	protected:
 		std::vector<std::unique_ptr<class Component>> m_components;

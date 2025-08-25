@@ -11,5 +11,7 @@ namespace Cpain {
 		Component() = default;
 
 		virtual void update(float deltaTime) = 0;
+		virtual void start(){}
+		virtual void destroyed(){}
 	};
 }
