@@ -14,11 +14,11 @@ namespace Cpain {
 		}
 
 		// Remove inactive
-
 		std::erase_if(m_actors, [](auto& actor) {
 			return (actor->active == false);
 		});
-
+		
+		// Remove inactive (old)
 		/*
 		for (auto iter = m_actors.begin(); iter != m_actors.end();) {
 			if ((*iter)->active == false) {
