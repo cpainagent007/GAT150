@@ -109,24 +109,26 @@ namespace Cpain {
 		return nullptr;
 	}
 
-	template <typename T = Actor>
+	template<typename T = Actor>
 	requires std::derived_from<T, Actor>
 	std::unique_ptr<T> instantiate(const std::string& name) {
-		Factory::instance().create<T>(name);
+		return Factory::instance().create<T>(name);
 	}
 
-	template <typename T = Actor>
+	template<typename T = Actor>
 	requires std::derived_from<T, Actor>
 	std::unique_ptr<T> instantiate(const std::string& name, const vec2& position, float rotation, float scale) {
-		Factory::instance().create<T>(name) {
-			Transform{ position, rotation, scale };
-		};
+		auto instance = Factory::instance().create<T>(name);
+		instance->transform = Transform{ position, rotation, scale };
+		return instance;
 	}
 
-	template <typename T = Actor>
+	template<typename T = Actor>
 	requires std::derived_from<T, Actor>
 	std::unique_ptr<T> instantiate(const std::string& name, const Transform& transform) {
-		Factory::instance().create<T>(name) { transform };
+		auto instance = Factory::instance().create<T>(name);
+		instance->transform = transform;
+		return instance;
 	}
 
 }

@@ -3,6 +3,7 @@
 #include "../Math/Transform.h"
 #include "../Renderer/Mesh.h"
 #include "../Renderer/Texture.h"
+#include "../Framework/Scene.h"
 #include "Object.h"
 #include "../Components/RendererComponent.h"
 #include "../Core/Factory.h"
