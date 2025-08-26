@@ -89,8 +89,6 @@ void Enemy::update(float deltaTime) {
 	}
 	*/
 
-	update(deltaTime);
-
 }
 
 void Enemy::onCollision(Cpain::Actor* collider){

@@ -15,7 +15,7 @@ namespace Cpain {
 
 		// Remove inactive
 		std::erase_if(m_actors, [](auto& actor) {
-			return (actor->active == false);
+			return (!actor->active);
 		});
 		
 		// Remove inactive (old)
@@ -33,7 +33,7 @@ namespace Cpain {
 		// Collision
 		for (auto& actorA : m_actors) {
 			for (auto& actorB : m_actors) {
-				if (actorA == actorB || (actorA->active == false) || (actorB->active == false)) continue;
+				if (actorA == actorB || (!actorA->active) || (!actorB->active)) continue;
 
 				auto colliderA = actorA->getComponent<ColliderComponent>();
 				auto colliderB = actorB->getComponent<ColliderComponent>();
