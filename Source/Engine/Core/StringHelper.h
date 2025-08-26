@@ -13,6 +13,7 @@ namespace Cpain {
 
 		return str;
 	}
+
 	inline std::string toUpper(std::string str) {
 		for (char& c : str) {
 			c = std::toupper(c);
@@ -20,4 +21,11 @@ namespace Cpain {
 		return str;
 	}
 
+	inline bool equalsIgnoreCase(const std::string strA, const std::string strB) {
+		if (strA.length() != strB.length()) return false;
+
+		return std::equal(strA.begin(), strA.end(), strB.begin(), [](char a, char b) {
+			return (std::tolower(a) == std::tolower(b));
+		});
+	}
 }

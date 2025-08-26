@@ -4,8 +4,9 @@
 #include "Framework/Scene.h"
 #include "Renderer/Font.h"
 #include "Renderer/Text.h"
+#include "Event/Observer.h"
 
-class SpaceGame : public Cpain::Game {
+class SpaceGame : public Cpain::Game, public Cpain::IObserver {
 public:
 	enum class GameState {
 		Initialize,
@@ -26,6 +27,8 @@ public:
 	void draw(class Cpain::Renderer& renderer) override;
 
 	void onPlayerDeath();
+
+	void onNotify(const Cpain::Event& event);
 
 private:
 

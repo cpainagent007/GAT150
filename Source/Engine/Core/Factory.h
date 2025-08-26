@@ -63,6 +63,8 @@ namespace Cpain {
 		requires std::derived_from<T, Object>
 		std::unique_ptr<T> create(const std::string& name);
 
+		void removeAll() { m_registry.clear(); }
+
 	private:
 		std::map<std::string, std::unique_ptr<CreatorBase>> m_registry;
 

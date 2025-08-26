@@ -26,6 +26,8 @@ namespace Cpain {
 
 	void Engine::shutdown() {
 		resources().clear();
+		EventManager::instance().removeAll();
+		Factory::instance().removeAll();
 
 		m_audio->shutdown();
 		m_input->shutdown();

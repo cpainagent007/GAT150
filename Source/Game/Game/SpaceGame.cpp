@@ -17,8 +17,11 @@
 
 #include <vector>
 
-bool SpaceGame::initialize()
-{
+bool SpaceGame::initialize() {
+
+    OBSERVER_ADD(player_dead);
+    OBSERVER_ADD(add_points);
+
     m_scene = std::make_unique<Cpain::Scene>(this);
     m_scene->load("scene.json");
 
@@ -130,7 +133,7 @@ void SpaceGame::draw(Cpain::Renderer& renderer) {
 
 void SpaceGame::onPlayerDeath() {
 	m_gameState = GameState::PlayerDied;
-	m_stateTimer = 2.0f;
+	m_stateTimer = 2;
 }
 
 void SpaceGame::shutdown() {
@@ -174,4 +177,12 @@ void SpaceGame::spawnEnemy() {
    
     m_scene->addActor(std::move(enemy));
 
+}
+
+void SpaceGame::onNotify(const Cpain::Event& event) {
+    if (Cpain::equalsIgnoreCase(event.id, "player_dead")) {
+        onPlayerDeath();
+    } else if (Cpain::equalsIgnoreCase(event.id, "add_points")) {
+        addPoints(std::get<int>(event.data));
+    }
 }

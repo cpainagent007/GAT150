@@ -95,7 +95,7 @@ void Enemy::update(float deltaTime) {
 void Enemy::onCollision(Cpain::Actor* collider){
 	if (owner->tag != collider->tag) {
 		owner->active = false;
-		owner->scene->getGame()->addPoints(10);
+		EVENT_NOTIFY(add_points, 10);
 		for (int i = 0; i < 100; i++) {
 			Cpain::Particle particle;
 			particle.position = owner->transform.position;
@@ -109,6 +109,13 @@ void Enemy::onCollision(Cpain::Actor* collider){
 }
 
 void Enemy::start(){
+	OBSERVER_ADD(player_dead);
 	m_rigidBody = owner->getComponent<Cpain::RigidBody>();
 	fireTimer = fireRate;
+}
+
+void Enemy::onNotify(const Cpain::Event& event) {
+	if (Cpain::equalsIgnoreCase(event.id, "player_dead")) {
+		owner->active = false;
+	}
 }

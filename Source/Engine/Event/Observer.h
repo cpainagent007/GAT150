@@ -2,7 +2,8 @@
 
 namespace Cpain {
 	class IObserver {
-		virtual ~IObserver() = default;
+	public:
+		virtual ~IObserver();
 
 		virtual void onNotify(const Event& event) = 0;
 	};

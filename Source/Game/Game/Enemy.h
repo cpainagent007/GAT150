@@ -3,7 +3,7 @@
 #include "Framework/Component.h"
 
 
-class Enemy : public Cpain::Component, public Cpain::ICollidable {
+class Enemy : public Cpain::Component, public Cpain::ICollidable, public Cpain::IObserver {
 public:
 	// Enemy Type Enumeration
 	/*
@@ -35,4 +35,6 @@ public:
 	void update(float deltaTime) override;
 
 	void start() override;
+
+	void onNotify(const Cpain::Event& event);
 };

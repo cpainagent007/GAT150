@@ -107,8 +107,17 @@ void Player::update(float deltaTime) {
 
 void Player::onCollision(Cpain::Actor* collider){
 	if (owner->tag != collider->tag) {
-		active = false;
-		dynamic_cast<SpaceGame*>(owner->scene->getGame())->onPlayerDeath();
+		owner->active = false;
+		EVENT_NOTIFY(player_dead);
+		for (int i = 0; i < 100; i++) {
+			Cpain::Particle particle;
+			particle.position = owner->transform.position;
+			particle.velocity = Cpain::onUnitCircle() * Cpain::getReal(10.0f, 200.0f);
+			particle.color = Cpain::vec3{ 1.0f, Cpain::getReal(0.5f, 0.9f), 0.0f };
+			particle.lifetime = 2;
+			Cpain::getEngine().getParticleSystem().addParticle(particle);
+
+		}
 	}
 }
 
