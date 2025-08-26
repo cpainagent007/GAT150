@@ -57,11 +57,11 @@ void Enemy::update(float deltaTime) {
 	case Type::Fast:
 		break;
 	case Type::Shooter:
+	*/
 		fireTimer -= deltaTime;
 		if (fireTimer <= 0 && playerVisible) {
 			fireTimer = fireRate;
 
-			std::shared_ptr<Cpain::Mesh> model = std::make_shared<Cpain::Mesh>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 0.0f, 0.0f });
 			Cpain::Transform transform{ owner->transform.position, owner->transform.rotation, 0.2f };
 			auto bullet = std::make_unique<Cpain::Actor>(transform);
 			bullet->lifespan = 1.0f;
@@ -81,8 +81,9 @@ void Enemy::update(float deltaTime) {
 			bullet->addComponent(std::move(collider));
 
 			owner->scene->addActor(std::move(bullet));
-
+			
 		}
+		/*
 		break;
 	case Type::Mega:
 		break;

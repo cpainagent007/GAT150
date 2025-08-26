@@ -40,9 +40,8 @@ void Player::update(float deltaTime) {
 	Cpain::vec2 inputDirection{ 1, 0 };
 	Cpain::vec2 force = inputDirection.rotate(Cpain::degToRad(owner->transform.rotation)) * thrust * shipSpeed;
 	
-	auto* rb = owner->getComponent<Cpain::RigidBody>();
-	if (rb) {
-		rb->velocity += force * deltaTime;
+	if (m_rigidBody) {
+		m_rigidBody->velocity += force * deltaTime;
 	}
 
 	owner->transform.position.x = Cpain::wrap(owner->transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
@@ -53,9 +52,23 @@ void Player::update(float deltaTime) {
 	if (Cpain::getEngine().getInput().getKeyDown(SDL_SCANCODE_SPACE) && fireTimer <= 0) {
 		fireTimer = fireRate;
 
-		std::shared_ptr<Cpain::Mesh> model = std::make_shared<Cpain::Mesh>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 1.0f, 0.0f });
 		Cpain::Transform transform{ owner->transform.position, owner->transform.rotation, 0.2f };
 		auto bullet = std::make_unique<Cpain::Actor>(transform);
+		bullet->lifespan = 1.0f;
+		bullet->name = "bullet";
+		bullet->tag = "player";
+
+		auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
+		spriteRenderer->textureName = "Rocket.png";
+
+		bullet->addComponent(std::move(spriteRenderer));
+
+		auto rb = std::make_unique<Cpain::RigidBody>();
+		bullet->addComponent(std::move(rb));
+
+		auto collider = std::make_unique<Cpain::CircleCollider2D>();
+		collider->radius = 30;
+		bullet->addComponent(std::move(collider));
 
 		// Player Projectile Types
 		/*
@@ -87,9 +100,7 @@ void Player::update(float deltaTime) {
 
 		}
 		*/
-
 		owner->scene->addActor(std::move(bullet));
-
 	}
 
 }
@@ -111,4 +122,8 @@ void Player::read(const Cpain::Json::value_t& value) {
 	JSON_READ(value, shipSpeed);
 	JSON_READ(value, rotationSpeed);
 	JSON_READ(value, fireRate);
+}
+
+void Player::start() {
+	m_rigidBody = owner->getComponent<Cpain::RigidBody>();
 }

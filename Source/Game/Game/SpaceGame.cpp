@@ -140,8 +140,8 @@ void SpaceGame::shutdown() {
 void SpaceGame::spawnEnemy() {
     Cpain::Actor* player = m_scene->getActorByName<Cpain::Actor>("player");
     Cpain::vec2 position = player->transform.position + Cpain::onUnitCircle() * Cpain::getReal(200.0f, 500.0f);
-    Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.0f };
-    auto enemy = Cpain::instantiate("enemy");
+    Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.2f };
+    auto enemy = Cpain::instantiate("enemy", transform);
 
     // Enemy Types
     /*

@@ -26,8 +26,8 @@ public:
 	float fireRate = 0.0f;
 	float fireTimer = 0.0f;
 	float thrust;
-	
 
+	Cpain::RigidBody* m_rigidBody = nullptr;
 
 public:
 	Player() = default;
@@ -41,4 +41,6 @@ public:
 	bool getMoving();
 
 	void read(const Cpain::Json::value_t& value);
+
+	void start() override;
 };
