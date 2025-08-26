@@ -54,6 +54,33 @@
           "radius": 60
         }
       ]
+    },
+    {
+      "name": "bullet",
+      "tag": "player",
+      "transform": {
+        "position": [ 0, 0 ],
+        "rotation": 0,
+        "scale": 0.2
+      },
+      "components": [
+        {
+          "type": "Bullet",
+          "speed": 100
+        },
+        {
+          "type": "SpriteRenderer",
+          "textureName": "Rocket.png"
+        },
+        {
+          "type": "RigidBody",
+          "damping": 0.05
+        },
+        {
+          "type": "CircleCollider2D",
+          "radius": 20
+        }
+      ]
     }
   ],
   "actors": [

@@ -48,17 +48,17 @@ void Player::update(float deltaTime) {
 	owner->transform.position.x = Cpain::wrap(owner->transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());
 	owner->transform.position.y = Cpain::wrap(owner->transform.position.y, 0.0f, (float)Cpain::getEngine().getRenderer().getHeight());
 
-	// Player Projectile Behavior
-	/*
 
 	fireTimer -= deltaTime;
 	if (Cpain::getEngine().getInput().getKeyDown(SDL_SCANCODE_SPACE) && fireTimer <= 0) {
 		fireTimer = fireRate;
 
 		std::shared_ptr<Cpain::Mesh> model = std::make_shared<Cpain::Mesh>(Cpain::bulletPoints, Cpain::vec3{ 1.0f, 1.0f, 0.0f });
-		Cpain::Transform transform{ this->transform.position, this->transform.rotation, 0.2f };
-		auto bullet = std::make_unique<Bullet>(transform);
+		Cpain::Transform transform{ owner->transform.position, owner->transform.rotation, 0.2f };
+		auto bullet = std::make_unique<Cpain::Actor>(transform);
 
+		// Player Projectile Types
+		/*
 		switch (weapon) {
 		case Weapon::Rocket:
 			fireRate = rocketRate;
@@ -86,26 +86,11 @@ void Player::update(float deltaTime) {
 			break;
 
 		}
-			
+		*/
 
-		auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
-		spriteRenderer->textureName = "Rocket.png";
-		bullet->addComponent(std::move(spriteRenderer));
-
-		auto rb = std::make_unique<Cpain::RigidBody>();
-		bullet->addComponent(std::move(rb));
-
-		auto collider = std::make_unique<Cpain::CircleCollider2D>();
-		collider->radius = 30;
-		bullet->addComponent(std::move(collider));
-
-		scene->addActor(std::move(bullet));
+		owner->scene->addActor(std::move(bullet));
 
 	}
-
-	Actor::update(deltaTime);
-
-	*/
 
 }
 
