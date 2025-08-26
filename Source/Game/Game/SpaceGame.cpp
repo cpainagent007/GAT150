@@ -183,6 +183,6 @@ void SpaceGame::onNotify(const Cpain::Event& event) {
     if (Cpain::equalsIgnoreCase(event.id, "player_dead")) {
         onPlayerDeath();
     } else if (Cpain::equalsIgnoreCase(event.id, "add_points")) {
-        addPoints(std::get<int>(event.data));
+        //addPoints(std::get<int>(event.data));
     }
 }

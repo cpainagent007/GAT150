@@ -37,12 +37,6 @@ void Bullet::update(float deltaTime) {
 	particle.color = Cpain::vec3{ 1.0f, Cpain::getReal(0.5f, 0.9f), 0.0f};
 	particle.lifetime = 0.1f;
 	Cpain::getEngine().getParticleSystem().addParticle(particle);
-
-
-	update(deltaTime);
-
-	
-
 }
 
 void Bullet::onCollision(Cpain::Actor* collider){

@@ -7,6 +7,7 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/ParticleSystem.h"
 #include "Resources/ResourceManager.h"
+#include "Physics/Physics.h"
 
 #include <memory>
 

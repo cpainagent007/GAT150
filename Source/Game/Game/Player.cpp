@@ -53,22 +53,8 @@ void Player::update(float deltaTime) {
 		fireTimer = fireRate;
 
 		Cpain::Transform transform{ owner->transform.position, owner->transform.rotation, 0.2f };
-		auto bullet = std::make_unique<Cpain::Actor>(transform);
-		bullet->lifespan = 1.0f;
-		bullet->name = "bullet";
-		bullet->tag = "player";
-
-		auto spriteRenderer = std::make_unique<Cpain::SpriteRenderer>();
-		spriteRenderer->textureName = "Rocket.png";
-
-		bullet->addComponent(std::move(spriteRenderer));
-
-		auto rb = std::make_unique<Cpain::RigidBody>();
-		bullet->addComponent(std::move(rb));
-
-		auto collider = std::make_unique<Cpain::CircleCollider2D>();
-		collider->radius = 30;
-		bullet->addComponent(std::move(collider));
+		auto bullet = Cpain::instantiate("bullet", transform);
+		owner->scene->addActor(std::move(bullet));
 
 		// Player Projectile Types
 		/*
@@ -100,7 +86,6 @@ void Player::update(float deltaTime) {
 
 		}
 		*/
-		owner->scene->addActor(std::move(bullet));
 	}
 
 }
