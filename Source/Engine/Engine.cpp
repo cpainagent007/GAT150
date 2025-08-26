@@ -8,6 +8,9 @@
 namespace Cpain {
 
 	bool Engine::initialize() {
+		m_physics = std::make_unique<Physics>();
+		m_physics->initialize();
+
 		m_particleSystem = std::make_unique<Cpain::ParticleSystem>();
 		m_particleSystem->initialize();
 
@@ -33,6 +36,7 @@ namespace Cpain {
 		m_input->shutdown();
 		m_renderer->shutdown();
 		m_particleSystem->shutdown();
+		m_physics->shutdown();
 	}
 
 	void Engine::update() {
@@ -40,6 +44,7 @@ namespace Cpain {
 		m_audio->update();
 		m_input->update();
 		m_particleSystem->update(m_time.getDeltaTime());
+		m_physics->update(m_time.getDeltaTime());
 	}
 
 	void Engine::draw() {

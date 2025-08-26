@@ -38,6 +38,7 @@
 
 // Physics
 #include "Physics/Collidable.h"
+#include "Physics/Physics.h"
 
 // Components
 #include "Components/AudioSource.h"

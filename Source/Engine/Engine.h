@@ -32,6 +32,7 @@ namespace Cpain {
 		InputSystem& getInput() { return *m_input; }
 		Renderer& getRenderer() { return *m_renderer; }
 		ParticleSystem& getParticleSystem() { return *m_particleSystem; }
+		Physics& GetPhysics() { return *m_physics; }
 
 	private:
 		friend class Singleton<Engine>;
@@ -43,6 +44,7 @@ namespace Cpain {
 		std::unique_ptr<InputSystem> m_input;
 		std::unique_ptr<Renderer> m_renderer;
 		std::unique_ptr<ParticleSystem> m_particleSystem;
+		std::unique_ptr<Physics> m_physics;
 		
 
 	};
