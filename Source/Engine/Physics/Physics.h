@@ -15,10 +15,18 @@ namespace Cpain {
 		void shutdown();
 		void update(float deltaTime);
 
-		vec2 worldToPixel(const vec2& world) {}
+		static vec2 worldToPixel(const vec2& world) { return world * ms_pixelsPerUnit; }
+		static vec2 pixelToWorld(const vec2& pixel) { return pixel / ms_pixelsPerUnit; }
+
+		static void setPixelsPerUnit(float ppu) { ms_pixelsPerUnit = ppu; }
+
+		static float ms_pixelsPerUnit;
 
 	private:
+		friend class PhysicsBody;
+
 		b2WorldId m_worldId;
+
 	};
 
 }

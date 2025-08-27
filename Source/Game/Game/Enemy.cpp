@@ -35,14 +35,15 @@ void Enemy::update(float deltaTime) {
 		if (playerVisible) {
 			float angle = Cpain::vec2::signedAngleBetween(forward, direction);
 			angle = Cpain::sign(angle);
-			owner->transform.rotation += Cpain::radToDeg((angle * 3) * deltaTime);
+			m_rigidBody->applyTorque(angle * 5);
+
 		}
 	}
 
 	Cpain::vec2 force = Cpain::vec2{ 1, 0 }.rotate(Cpain::degToRad(owner->transform.rotation)) * speed;
 
 	if (m_rigidBody) {
-		m_rigidBody->velocity += force * deltaTime;
+		m_rigidBody->applyForce(force);
 	}
 	
 

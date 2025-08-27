@@ -41,7 +41,7 @@ void Player::update(float deltaTime) {
 	Cpain::vec2 force = inputDirection.rotate(Cpain::degToRad(owner->transform.rotation)) * thrust * shipSpeed;
 	
 	if (m_rigidBody) {
-		m_rigidBody->velocity += force * deltaTime;
+		m_rigidBody->applyForce(force);
 	}
 
 	owner->transform.position.x = Cpain::wrap(owner->transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());

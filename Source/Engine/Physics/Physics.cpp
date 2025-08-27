@@ -1,6 +1,8 @@
 #include "Physics.h"
 
 namespace Cpain {
+	float ms_pixelsPerUnit = 48.0f;
+
 	bool Physics::initialize() {
 		b2WorldDef worldDef = b2DefaultWorldDef();
 		worldDef.gravity = b2Vec2{ 0.0f, -10.0f };

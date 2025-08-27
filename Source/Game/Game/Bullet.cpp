@@ -21,7 +21,7 @@ void Bullet::update(float deltaTime) {
 	Cpain::vec2 force = Cpain::vec2{ 1, 0 }.rotate(Cpain::degToRad(owner->transform.rotation)) * speed;
 	
 	if (m_rigidBody) {
-		m_rigidBody->velocity = force;
+		m_rigidBody->setVelocity(force);
 	}
 
 	owner->transform.position.x = Cpain::wrap(owner->transform.position.x, 0.0f, (float)Cpain::getEngine().getRenderer().getWidth());

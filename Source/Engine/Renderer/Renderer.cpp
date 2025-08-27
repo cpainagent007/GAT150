@@ -52,6 +52,7 @@ namespace Cpain {
             return false;
         }
 
+        SDL_SetRenderVSync(m_renderer, 1);
         SDL_SetRenderLogicalPresentation(m_renderer, width, height, SDL_LOGICAL_PRESENTATION_LETTERBOX);
 
         return true;

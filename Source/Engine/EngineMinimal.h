@@ -39,6 +39,7 @@
 // Physics
 #include "Physics/Collidable.h"
 #include "Physics/Physics.h"
+#include "Physics/PhysicsBody.h"
 
 // Components
 #include "Components/AudioSource.h"
@@ -67,6 +68,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_ttf/SDL_ttf.h>
+#include <box2d/box2d.h>
 
 // STD
 #include <string>

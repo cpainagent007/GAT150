@@ -18,21 +18,12 @@ namespace Cpain {
 			return (!actor->active);
 		});
 		
-		// Remove inactive (old)
-		/*
-		for (auto iter = m_actors.begin(); iter != m_actors.end();) {
-			if ((*iter)->active == false) {
-				iter = m_actors.erase(iter);
-			}
-			else {
-				iter++;
-			}
-		}
-		*/
-
 		// Collision
 		for (auto& actorA : m_actors) {
 			for (auto& actorB : m_actors) {
+
+				continue;
+
 				if (actorA == actorB || (!actorA->active) || (!actorB->active)) continue;
 
 				auto colliderA = actorA->getComponent<ColliderComponent>();

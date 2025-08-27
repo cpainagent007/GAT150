@@ -33,7 +33,7 @@ namespace Cpain {
 		InputSystem& getInput() { return *m_input; }
 		Renderer& getRenderer() { return *m_renderer; }
 		ParticleSystem& getParticleSystem() { return *m_particleSystem; }
-		Physics& GetPhysics() { return *m_physics; }
+		Physics& getPhysics() { return *m_physics; }
 
 	private:
 		friend class Singleton<Engine>;
