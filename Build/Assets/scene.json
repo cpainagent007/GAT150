@@ -12,7 +12,8 @@
         {
           "type": "Player",
           "shipSpeed": 1000,
-          "rotationSpeed": 180
+          "rotationSpeed": 180,
+          "fireRate": 1.0
         },
         {
           "type": "SpriteRenderer",
@@ -66,7 +67,7 @@
       "components": [
         {
           "type": "Bullet",
-          "speed": 500
+          "speed": 1000
         },
         {
           "type": "SpriteRenderer",

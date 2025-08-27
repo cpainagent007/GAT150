@@ -21,9 +21,9 @@ public:
 	const float superRate = 2.5f;
 	const float bombRate = 1.0f;
 
-	float shipSpeed = 200.0f;
-	float rotationSpeed = 180.0f;
-	float fireRate = 0.0f;
+	float shipSpeed;
+	float rotationSpeed;
+	float fireRate;
 	float fireTimer = 0.0f;
 	float thrust;
 
