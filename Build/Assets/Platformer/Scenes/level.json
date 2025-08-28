@@ -1,0 +1,18 @@
+{
+  "actors": [
+    {
+      "persistent": true,
+      "transform": {
+        "position": [ 640, 512 ],
+        "rotation": 0,
+        "scale": 5
+      },
+      "components": [
+        {
+          "type": "SpriteRenderer",
+          "textureName": "Textures/Sky.jpg"
+        }
+      ]
+    }
+  ]
+}

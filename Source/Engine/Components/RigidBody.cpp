@@ -1,5 +1,6 @@
 #include "RigidBody.h"
 #include "../Engine.h"
+#include "../Math/Vector2.h"
 
 namespace Cpain {
 	RigidBody::RigidBody(const RigidBody& other) {
@@ -31,7 +32,7 @@ namespace Cpain {
 		Object::read(value);
 
 		JSON_READ(value, size);
-		//JSON_READ(value, scale);
+		JSON_READ(value, scale);
 
 		JSON_READ_NAME(value, "gravityScale", bodyDef.gravityScale);
 		JSON_READ_NAME(value, "linearDamping", bodyDef.linearDamping);
@@ -61,6 +62,7 @@ namespace Cpain {
 				size = spriteRenderer->texture->getSize();
 			}
 		}
+		size *= scale;
 
 		m_physicsBody = std::make_unique<PhysicsBody>(owner->transform, size, bodyDef, getEngine().getPhysics());
 	}

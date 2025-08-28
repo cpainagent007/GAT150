@@ -1,44 +1,11 @@
-#include "Audio/AudioSystem.h"
-
-#include "Core/File.h"
-#include "Core/Random.h"
-#include "Core/Time.h"
-
-#include "Framework/Actor.h"
-#include "Framework/Scene.h"
-
-#include "Input/InputSystem.h"
-
-#include "Math/Math.h"
-#include "Math/Vector2.h"
-#include "Math/Vector3.h"
-#include "Math/Transform.h"
-
-#include "Resources/ResourceManager.h"
-
-#include "Renderer/Text.h"
-#include "Renderer/Font.h"
-#include "Renderer/Renderer.h"
-#include "Renderer/Mesh.h"
-#include "Renderer/Texture.h"
-
-#include "Engine.h"
-
-#include "Game/Player.h"
 #include "Game/SpaceGame.h"
-
-#include <iostream>
-#include <vector>
-#include <memory>
-#include <fstream>
-
-
+#include "Platformer/PlatformerGame.h"
 
 int main(int argc, char* argv[]) {
 
     // Set Directory
 
-	Cpain::setCurrentDirectory("Assets");
+	Cpain::setCurrentDirectory("Assets/Platformer");
     Cpain::Logger::Info("Current Directory {}", Cpain::getCurrentDirectory());
 
     // Testing
@@ -54,7 +21,7 @@ int main(int argc, char* argv[]) {
 
     // Initialize Game
 
-	std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();
+	std::unique_ptr<Cpain::Game> game = std::make_unique<PlatformerGame>();
 	game->initialize();
 
 	// Additional Initialization
