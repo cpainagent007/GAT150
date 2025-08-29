@@ -1,7 +1,7 @@
 #include "Physics.h"
 
 namespace Cpain {
-	float ms_pixelsPerUnit = 48.0f;
+	float Physics::ms_pixelsPerUnit = 48.0f;
 
 	bool Physics::initialize() {
 		b2WorldDef worldDef = b2DefaultWorldDef();

@@ -21,7 +21,7 @@
         },
         {
           "type": "RigidBody",
-          "gravityScale": 1.0,
+          "gravityScale": -1.0,
           "constrainAngle": true,
           "shape": "capsule",
           "scale": [ 1, 1 ]
@@ -49,7 +49,7 @@
         },
         {
           "type": "RigidBody",
-          "gravityScale": 1.0,
+          "gravityScale": -1.0,
           "constrainAngle": true,
           "shape": "circle",
           "scale": [ 1, 1 ]

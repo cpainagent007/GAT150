@@ -62,9 +62,8 @@ namespace Cpain {
 				size = spriteRenderer->texture->getSize();
 			}
 		}
-		size *= scale;
-
-		m_physicsBody = std::make_unique<PhysicsBody>(owner->transform, size, bodyDef, getEngine().getPhysics());
+		auto scaledSize = vec2{ size.x * scale.x, size.y * scale.y };
+		m_physicsBody = std::make_unique<PhysicsBody>(owner->transform, scaledSize, bodyDef, getEngine().getPhysics());
 	}
 
 	void RigidBody::setVelocity(const vec2& velocity) {
