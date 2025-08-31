@@ -18,10 +18,13 @@ void PlatformerGame::shutdown() {
 void PlatformerGame::update(float deltaTime) {
     switch (m_gameState) {
     case GameState::Initialize:
+        m_gameState = GameState::Title;
         break;
     case GameState::Title:
+        m_gameState = GameState::StartGame;
         break;
     case GameState::StartGame:
+        m_gameState = GameState::StartLevel;
         break;
     case GameState::StartLevel:
         spawnPlayer();
@@ -55,7 +58,7 @@ void PlatformerGame::onNotify(const Cpain::Event& event) {
 }
 
 void PlatformerGame::spawnEnemy() {
-    auto enemy = Cpain::instantiate("platEnemy");
+    auto enemy = Cpain::instantiate("bat");
     m_scene->addActor(std::move(enemy));
 }
 

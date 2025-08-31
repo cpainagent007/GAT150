@@ -22,6 +22,7 @@ namespace Cpain {
         }
 
     private:
+        friend class Renderer;
         SDL_Texture* m_texture = nullptr;
     };
 

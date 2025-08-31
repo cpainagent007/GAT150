@@ -5,21 +5,27 @@ namespace Cpain {
 	FACTORY_REGISTER(SpriteRenderer)
 
 	void SpriteRenderer::update(float deltaTime) {
-
+		
 	}
 
 	void SpriteRenderer::draw(Renderer& renderer) {
-		auto texture = resources().get<Texture>(textureName, renderer);
-
 		if (texture) {
-			renderer.drawTexture(*texture,
-				owner->transform.position.x,
-				owner->transform.position.y,
-				owner->transform.rotation,
-				owner->transform.scale);
+			if (textureRect.w > 0 && textureRect.h > 0) {
+				renderer.drawTexture(*texture,
+					textureRect,
+					owner->transform.position.x,
+					owner->transform.position.y,
+					owner->transform.rotation,
+					owner->transform.scale);
+			}
+			else {
+				renderer.drawTexture(*texture,
+					owner->transform.position.x,
+					owner->transform.position.y,
+					owner->transform.rotation,
+					owner->transform.scale);
+			}
 		}
-
-
 	}
 
 	void SpriteRenderer::read(const Json::value_t& value) {
@@ -29,8 +35,9 @@ namespace Cpain {
 	}
 
 	void SpriteRenderer::start() {
-		texture = resources().get<Texture>(textureName, getEngine().getRenderer());
-
+		if (!texture && !textureName.empty()) {
+			texture = resources().get<Texture>(textureName, getEngine().getRenderer());
+		}
 	}
 
 }

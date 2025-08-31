@@ -27,6 +27,7 @@
 
 // Math
 #include "Math/Math.h"
+#include "Math/Rect.h"
 #include "Math/Transform.h"
 #include "Math/Vector2.h"
 #include "Math/Vector3.h"
@@ -42,6 +43,7 @@
 #include "Physics/PhysicsBody.h"
 
 // Components
+#include "Components/Animator.h"
 #include "Components/AudioSource.h"
 #include "Components/RendererComponent.h"
 #include "Components/RigidBody.h"
@@ -57,6 +59,7 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/Text.h"
 #include "Renderer/Texture.h"
+#include "Renderer/TextureAnimation.h"
 
 // Resources
 #include "Resources/Resource.h"

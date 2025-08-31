@@ -11,9 +11,9 @@
       "components": [
         {
           "type": "PlayerController",
-          "speed": 70,
-          "maxSpeed": 100,
-          "jump": 10000
+          "speed": 1000,
+          "maxSpeed": 1000,
+          "jump": 100000
         },
         {
           "type": "SpriteRenderer",
@@ -53,6 +53,32 @@
           "constrainAngle": true,
           "shape": "circle",
           "scale": [ 1, 1 ]
+        }
+      ]
+    },
+    {
+      "name": "bat",
+      "tag": "enemy",
+      "transform": {
+        "position": [
+          740,
+          500
+        ],
+        "rotation": 0,
+        "scale": 3
+      },
+      "components": [
+        {
+          "type": "SpriteRenderer"
+        },
+        {
+          "type": "Animator",
+          "animations": [
+            {
+              "name": "idle",
+              "texture_animation": "Animations/bat_idle.json"
+            }
+          ]
         }
       ]
     }

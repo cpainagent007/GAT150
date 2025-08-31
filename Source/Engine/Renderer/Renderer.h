@@ -25,13 +25,12 @@ namespace Cpain {
 		int getWidth() const { return m_width; }
 		int getHeight() const { return m_height; }
 
-		SDL_Renderer* getSDLRenderer() {
-			return m_renderer;
-		}
+		SDL_Renderer* getSDLRenderer() { return m_renderer; }
 
 		friend class Texture;
 		void drawTexture(class Texture& texture, float x, float y);
 		void drawTexture(class Texture& texture, float x, float y, float angle, float scale = 1);
+		void drawTexture(class Texture& texture, const rect& sourceRect, float x, float y, float angle, float scale = 1);
 
 	private:
 		friend class Text;
