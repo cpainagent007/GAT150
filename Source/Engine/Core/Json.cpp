@@ -125,4 +125,26 @@ namespace Cpain::Json
 
         return true;
     }
+
+    // READ (vector)
+    bool read(const value_t& value, const std::string& name, std::vector<int>& data, bool required) {
+
+        if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray()) {
+            if (required) Logger::Error("Could not read Json value (vector<int>): {}.", name);
+            return false;
+        }
+
+        auto& array = value[name.c_str()];
+
+        for (rapidjson::SizeType i = 0; i < array.Size(); i++) {
+            if (!array[i].IsNumber()) {
+                Logger::Error("Could not read Json value: {}.", name);
+                return false;
+            }
+
+            data.push_back(array[i].GetInt());
+        }
+
+        return true;
+    }
 }

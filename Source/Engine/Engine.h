@@ -17,6 +17,7 @@ namespace Cpain {
 	class InputSystem;
 	class Renderer;
 	class ParticleSystem;
+	class Physics;
 
 	class Engine : public Singleton<Engine> {
 	public:

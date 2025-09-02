@@ -51,6 +51,7 @@
 #include "Components/ColliderComponent.h"
 #include "Components/MeshRenderer.h"
 #include "Components/CircleCollider2D.h"
+#include "Components/TilemapRenderer.h"
 
 // Renderer
 #include "Renderer/Font.h"
@@ -60,6 +61,7 @@
 #include "Renderer/Text.h"
 #include "Renderer/Texture.h"
 #include "Renderer/TextureAnimation.h"
+#include "Renderer/Tilemap.h"
 
 // Resources
 #include "Resources/Resource.h"

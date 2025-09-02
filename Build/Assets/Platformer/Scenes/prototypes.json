@@ -77,6 +77,10 @@
             {
               "name": "idle",
               "texture_animation": "Animations/bat_idle.json"
+            },
+            {
+              "name": "die",
+              "texture_animation": "Animations/bat_die.json"
             }
           ]
         }
