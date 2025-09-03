@@ -29,8 +29,8 @@ namespace Cpain {
 
 		friend class Texture;
 		void drawTexture(class Texture& texture, float x, float y);
-		void drawTexture(class Texture& texture, float x, float y, float angle, float scale = 1);
-		void drawTexture(class Texture& texture, const rect& sourceRect, float x, float y, float angle, float scale = 1);
+		void drawTexture(class Texture& texture, float x, float y, float angle, float scale = 1, bool flipH = false);
+		void drawTexture(class Texture& texture, const rect& sourceRect, float x, float y, float angle, float scale = 1, bool flipH = false);
 
 	private:
 		friend class Text;

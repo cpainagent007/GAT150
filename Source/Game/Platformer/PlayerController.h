@@ -11,6 +11,11 @@ public:
 	float fireRate = 0.0f;
 	float fireTimer = 0.0f;
 
+	float jumpCooldown = 3.0f;
+	float jumpTimer = 0.0f;
+
+	bool jumped = false;
+
 	Cpain::RigidBody* m_rigidBody = nullptr;
 
 public:

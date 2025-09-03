@@ -66,4 +66,7 @@ namespace Cpain {
 	using std::tanf;
 	using std::atan2;
 	using std::atan2f;
+
+	using std::abs;
+	using std::fabs;
 }

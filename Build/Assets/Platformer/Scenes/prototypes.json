@@ -85,6 +85,41 @@
           ]
         }
       ]
+    },
+    {
+      "name": "coin",
+      "tag": "pickup",
+      "transform": {
+        "position": [ 0, 0 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "SpriteRenderer",
+          "textureName": "Textures/coin.png"
+        },
+        {
+          "type": "Animator",
+          "animations": [
+            {
+              "name": "shimmer",
+              "texture_animation": "Animations/coin_shimmer.json"
+            }
+          ]
+        },
+        {
+          "type": "RigidBody",
+          "gravityScale": 0.0,
+          "constrainAngle": true,
+          "isDynamic": false
+        },
+        {
+          "type": "CircleCollider2D",
+          "radius": 16,
+          "isSensor": true
+        }
+      ]
     }
   ]
 }

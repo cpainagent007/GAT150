@@ -4,25 +4,22 @@
 FACTORY_REGISTER(EnemyController)
 
 void EnemyController::update(float deltaTime) {
-	float direction = 0;
+    Cpain::Actor* player = owner->scene->getActorByName<Cpain::Actor>("platPlayer");
+    if (player && m_rigidBody) {
 
-	Cpain::Actor* player = owner->scene->getActorByName<Cpain::Actor>("platPlayer");
-	if (player) {
-		if (player->transform.position.x < owner->transform.position.x) direction = -1;
-		else direction = +1;
-	}
+        Cpain::vec2 direction = player->transform.position - owner->transform.position;
 
-	if (direction != 0) {
-		m_rigidBody->applyForce(Cpain::vec2{ 1, 0 } *direction * speed);
-	}
+        if (direction.lengthSqrd() > 0.0001f) {
+            direction = direction.normalized();
+        }
 
-	if (Cpain::getEngine().getInput().getKeyPressed(SDL_SCANCODE_SPACE)) {
-		m_rigidBody->applyForce(Cpain::vec2{ 0, -1 } *jump);
-	}
+        m_rigidBody->applyForce(direction * speed);
+    }
 }
 
 void EnemyController::onCollision(class Cpain::Actor* collider) {
-
+    auto coin = Cpain::instantiate("coin");
+    coin->transform.position = owner->transform.position;
 }
 
 void EnemyController::read(const Cpain::Json::value_t& value) {

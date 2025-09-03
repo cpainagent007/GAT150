@@ -23,6 +23,7 @@ namespace Cpain {
 
 		PhysicsBody::PhysicsBodyDef bodyDef;
 		bodyDef.isDynamic = false;
+		bodyDef.actor = owner;
 
 		// iterate through layers
 		for (auto layer : m_tilemap->getLayers()) {

@@ -25,7 +25,7 @@ namespace Cpain {
 	void RigidBody::update(float deltaTime) {
 		owner->transform.position = m_physicsBody->getPosition();
 		owner->transform.rotation = radToDeg(m_physicsBody->getAngle());
-
+		velocity = getVelocity();
 	}
 
 	void RigidBody::read(const Json::value_t& value) {
@@ -68,6 +68,10 @@ namespace Cpain {
 
 	void RigidBody::setVelocity(const vec2& velocity) {
 		m_physicsBody->setVelocity(velocity);
+	}
+
+	vec2 RigidBody::getVelocity() {
+		return Physics::worldToPixel(toVec2(b2Body_GetLinearVelocity(m_physicsBody->getBodyId())));
 	}
 }
 

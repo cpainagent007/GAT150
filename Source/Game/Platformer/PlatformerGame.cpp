@@ -28,12 +28,15 @@ void PlatformerGame::update(float deltaTime) {
         break;
     case GameState::StartLevel:
         spawnPlayer();
-        spawnEnemy();
         m_gameState = GameState::Playing;
         break;
     case GameState::Playing:
         break;
     case GameState::PlayerDied:
+        m_lives--;
+        if (m_lives == 0) {
+            EVENT_NOTIFY("player_dead");
+        }
         break;
     case GameState::EndGame:
         break;
@@ -54,11 +57,20 @@ void PlatformerGame::onPlayerDeath() {
 }
 
 void PlatformerGame::onNotify(const Cpain::Event& event) {
-
+    if (Cpain::equalsIgnoreCase(event.id, "add_points")) {
+        int points = std::get<int>(event.data);
+        m_score += points;
+    }
+    else if (Cpain::equalsIgnoreCase(event.id, "player_dead")) {
+        m_gameState = GameState::EndGame;
+    }
 }
 
 void PlatformerGame::spawnEnemy() {
-    auto enemy = Cpain::instantiate("bat");
+    Cpain::Actor* player = m_scene->getActorByName<Cpain::Actor>("player");
+    Cpain::vec2 position = player->transform.position + Cpain::onUnitCircle() * Cpain::getReal(200.0f, 500.0f);
+    Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.2f };
+    auto enemy = Cpain::instantiate("bat", transform);
     m_scene->addActor(std::move(enemy));
 }
 

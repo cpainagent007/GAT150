@@ -23,6 +23,9 @@ namespace Cpain {
 		static float ms_pixelsPerUnit;
 
 	private:
+		void processCollisionEvents();
+
+	private:
 		friend class PhysicsBody;
 
 		b2WorldId m_worldId;

@@ -41,6 +41,7 @@ namespace Cpain {
 		void applyForce(const vec2& force);
 		void applyTorque(float radians);
 		void setVelocity(const vec2& velocity);
+		b2BodyId getBodyId();
 
 	private:
 		b2BodyId m_bodyId = b2_nullBodyId;

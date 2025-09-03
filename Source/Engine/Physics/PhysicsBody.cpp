@@ -24,6 +24,9 @@ namespace Cpain {
 		shapeDef.density = def.density;
 		shapeDef.isSensor = def.isSensor;
 
+		if (def.isSensor) shapeDef.enableSensorEvents = true;
+		else shapeDef.enableContactEvents = true;
+
 		// Create shape
 		b2Vec2 hsize = toB2(Physics::pixelToWorld(size * transform.scale * 0.5f));
 		switch (def.shape)
@@ -73,5 +76,9 @@ namespace Cpain {
 
 	void PhysicsBody::setVelocity(const vec2& velocity) {
 		b2Body_SetLinearVelocity(m_bodyId, toB2(Physics::pixelToWorld(velocity)));
+	}
+
+	b2BodyId PhysicsBody::getBodyId() {
+		return m_bodyId;
 	}
 }

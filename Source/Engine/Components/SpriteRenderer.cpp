@@ -16,14 +16,16 @@ namespace Cpain {
 					owner->transform.position.x,
 					owner->transform.position.y,
 					owner->transform.rotation,
-					owner->transform.scale);
+					owner->transform.scale,
+					flipH);
 			}
 			else {
 				renderer.drawTexture(*texture,
 					owner->transform.position.x,
 					owner->transform.position.y,
 					owner->transform.rotation,
-					owner->transform.scale);
+					owner->transform.scale,
+					flipH);
 			}
 		}
 	}
@@ -32,6 +34,7 @@ namespace Cpain {
 		Object::read(value);
 
 		JSON_READ(value, textureName);
+		JSON_READ(value, flipH);
 	}
 
 	void SpriteRenderer::start() {
