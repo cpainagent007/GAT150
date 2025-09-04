@@ -11,7 +11,7 @@ public:
 	float fireRate = 0.0f;
 	float fireTimer = 0.0f;
 
-	float jumpCooldown = 3.0f;
+	float jumpCooldown = 1.5f;
 	float jumpTimer = 0.0f;
 
 	bool jumped = false;

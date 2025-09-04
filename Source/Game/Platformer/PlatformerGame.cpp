@@ -83,13 +83,13 @@ void PlatformerGame::spawnEnemy() {
 
     switch (side) {
     case 0:
-        position = Cpain::vec2{ Cpain::getReal(0.0f, (float)screenWidth), ((float)screenHeight + 10.0f) };
+        position = Cpain::vec2{ Cpain::getReal(0.0f, (float)screenWidth), 0 };
         break;
     case 1:
-        position = Cpain::vec2{ -10.0f, Cpain::getReal(0.0f, (float)screenHeight)};
+        position = Cpain::vec2{ -10.0f, Cpain::getReal(0.0f, (float)screenHeight/2)};
         break;
     case 2:
-        position = Cpain::vec2{ ((float)screenWidth + 10.0f), Cpain::getReal(0.0f, (float)screenHeight)};
+        position = Cpain::vec2{ ((float)screenWidth + 10.0f), Cpain::getReal(0.0f, (float)screenHeight/2)};
         break;
     }
 

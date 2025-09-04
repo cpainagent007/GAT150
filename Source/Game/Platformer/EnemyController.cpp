@@ -19,6 +19,7 @@ void EnemyController::update(float deltaTime) {
 void EnemyController::onCollision(class Cpain::Actor* collider) {
     auto coin = Cpain::instantiate("coin");
     coin->transform.position = owner->transform.position;
+    active = false;
 }
 
 void EnemyController::read(const Cpain::Json::value_t& value) {

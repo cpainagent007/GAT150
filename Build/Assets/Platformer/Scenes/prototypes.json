@@ -11,8 +11,8 @@
       "components": [
         {
           "type": "PlayerController",
-          "speed": 1500,
-          "maxSpeed": 2500,
+          "speed": 1750,
+          "maxSpeed": 3000,
           "jump": 250000
         },
         {
@@ -49,8 +49,8 @@
       "components": [
         {
           "type": "EnemyController",
-          "speed": 750,
-          "maxSpeed": 750
+          "speed": 10,
+          "maxSpeed": 50
         },
         {
           "type": "SpriteRenderer",
@@ -61,6 +61,7 @@
           "gravityScale": 0.0,
           "constrainAngle": true,
           "shape": "circle",
+          "size": [ 25, 25 ],
           "scale": [ 1, 1 ]
         },
         {
@@ -69,10 +70,6 @@
             {
               "name": "idle",
               "texture_animation": "Animations/bat_idle.json"
-            },
-            {
-              "name": "die",
-              "texture_animation": "Animations/bat_die.json"
             }
           ]
         }
