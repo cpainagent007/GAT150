@@ -74,6 +74,7 @@ void PlatformerGame::onNotify(const Cpain::Event& event) {
 }
 
 void PlatformerGame::spawnEnemy() {
+    
     int screenWidth = Cpain::getEngine().getRenderer().getWidth();
     int screenHeight = Cpain::getEngine().getRenderer().getHeight();
     Cpain::vec2 position;
@@ -95,6 +96,7 @@ void PlatformerGame::spawnEnemy() {
 
     auto enemy = Cpain::instantiate("bat", position);
     m_scene->addActor(std::move(enemy));
+    
 }
 
 void PlatformerGame::spawnPlayer() {

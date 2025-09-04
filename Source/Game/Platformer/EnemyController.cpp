@@ -6,7 +6,6 @@ FACTORY_REGISTER(EnemyController)
 void EnemyController::update(float deltaTime) {
     Cpain::Actor* player = owner->scene->getActorByName<Cpain::Actor>("platPlayer");
     if (player && m_rigidBody) {
-
         Cpain::vec2 direction = player->transform.position - owner->transform.position;
 
         if (direction.lengthSqrd() > 0.0001f) {
@@ -27,8 +26,6 @@ void EnemyController::read(const Cpain::Json::value_t& value) {
 
 	JSON_READ(value, speed);
 	JSON_READ(value, maxSpeed);
-	JSON_READ(value, jump);
-	JSON_READ(value, fireRate);
 }
 
 void EnemyController::start() {

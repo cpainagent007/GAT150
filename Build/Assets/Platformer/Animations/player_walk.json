@@ -1,9 +1,9 @@
 {
-"texture_name" : "textures/coin.png",
+"texture_name" : "textures/player.png",
 "columns": 4,
 "rows": 1,
 "start_frame": 0,
 "total_frames": 4,
-"frames_per_second": 10,
+"frames_per_second": 25,
 "loop": true
 }
