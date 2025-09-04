@@ -26,6 +26,8 @@ namespace Cpain {
 		for (int i = 0; i < contactEvents.beginCount; i++) {
 			b2ContactBeginTouchEvent* contactEvent = contactEvents.beginEvents + i;
 
+			if (!b2Shape_IsValid(contactEvent->shapeIdA) || !b2Shape_IsValid(contactEvent->shapeIdB)) continue;
+
 			b2BodyId bodyA = b2Shape_GetBody(contactEvent->shapeIdA);
 			b2BodyId bodyB = b2Shape_GetBody(contactEvent->shapeIdB);
 
@@ -42,6 +44,8 @@ namespace Cpain {
 		// End Contact
 		for (int i = 0; i < contactEvents.endCount; i++) {
 			b2ContactEndTouchEvent* contactEvent = contactEvents.endEvents + i;
+
+			if (!b2Shape_IsValid(contactEvent->shapeIdA) || !b2Shape_IsValid(contactEvent->shapeIdB)) continue;
 
 			b2BodyId bodyA = b2Shape_GetBody(contactEvent->shapeIdA);
 			b2BodyId bodyB = b2Shape_GetBody(contactEvent->shapeIdB);
@@ -60,6 +64,8 @@ namespace Cpain {
 		b2SensorEvents sensorEvents = b2World_GetSensorEvents(m_worldId);
 		for (int i = 0; i < sensorEvents.beginCount; i++) {
 			b2SensorBeginTouchEvent* sensorEvent = sensorEvents.beginEvents + i;
+
+			if (!b2Shape_IsValid(sensorEvent->sensorShapeId) || !b2Shape_IsValid(sensorEvent->visitorShapeId)) continue;
 
 			b2BodyId bodyA = b2Shape_GetBody(sensorEvent->sensorShapeId);
 			b2BodyId bodyB = b2Shape_GetBody(sensorEvent->visitorShapeId);

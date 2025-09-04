@@ -18,7 +18,7 @@ void PlatformerGame::shutdown() {
 void PlatformerGame::update(float deltaTime) {
     switch (m_gameState) {
     case GameState::Initialize:
-        timer = spawnTime;
+        timer = spawnTime/2;
         m_gameState = GameState::Title;
         break;
     case GameState::Title:

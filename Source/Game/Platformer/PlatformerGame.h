@@ -20,7 +20,7 @@ public:
 	};
 
 	float spawnTimeMin = 1.0f;
-	float spawnTime = 5.0f;
+	float spawnTime = 10.0f;
 	float timer = 0.0f;
 
 public:

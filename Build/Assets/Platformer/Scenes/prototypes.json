@@ -60,6 +60,7 @@
           "type": "RigidBody",
           "gravityScale": 0.0,
           "constrainAngle": true,
+          "isSensor": false,
           "shape": "circle",
           "size": [ 25, 25 ],
           "scale": [ 1, 1 ]

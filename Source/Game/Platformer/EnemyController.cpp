@@ -17,10 +17,27 @@ void EnemyController::update(float deltaTime) {
 }
 
 void EnemyController::onCollision(class Cpain::Actor* collider) {
-    auto coin = Cpain::instantiate("coin");
-    coin->transform.position = owner->transform.position;
-    active = false;
+    if (owner->tag != collider->tag) {
+
+        if (m_rigidBody) {
+            m_rigidBody->bodyDef.isSensor = true;
+            m_rigidBody->start();
+        }
+
+        EVENT_NOTIFY(add_points, 10);
+        for (int i = 0; i < 100; i++) {
+            Cpain::Particle particle;
+            particle.position = owner->transform.position;
+            particle.velocity = Cpain::onUnitCircle() * Cpain::getReal(10.0f, 200.0f);
+            particle.color = Cpain::vec3{ 1, 1, 1 };
+            particle.lifetime = 2;
+            Cpain::getEngine().getParticleSystem().addParticle(particle);
+        }
+
+        owner->active = false;
+    }
 }
+
 
 void EnemyController::read(const Cpain::Json::value_t& value) {
 	Object::read(value);

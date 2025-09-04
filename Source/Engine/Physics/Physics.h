@@ -23,6 +23,7 @@ namespace Cpain {
 		static float ms_pixelsPerUnit;
 
 	private:
+		friend class Engine;
 		void processCollisionEvents();
 
 	private:
