@@ -18,10 +18,11 @@ void PlatformerGame::shutdown() {
 void PlatformerGame::update(float deltaTime) {
     switch (m_gameState) {
     case GameState::Initialize:
+        timer = spawnTime;
         m_gameState = GameState::Title;
         break;
     case GameState::Title:
-        m_gameState = GameState::StartGame;
+        if (Cpain::getEngine().getInput().getKeyPressed(SDL_SCANCODE_SPACE)) m_gameState = GameState::StartGame;
         break;
     case GameState::StartGame:
         m_gameState = GameState::StartLevel;
@@ -31,6 +32,12 @@ void PlatformerGame::update(float deltaTime) {
         m_gameState = GameState::Playing;
         break;
     case GameState::Playing:
+        if (timer <= 0.0f) {
+            spawnEnemy();
+            timer = spawnTime - (m_score/10);
+            if (timer <= spawnTimeMin) timer = spawnTimeMin;
+        }
+        timer -= deltaTime;
         break;
     case GameState::PlayerDied:
         m_lives--;
@@ -67,10 +74,26 @@ void PlatformerGame::onNotify(const Cpain::Event& event) {
 }
 
 void PlatformerGame::spawnEnemy() {
-    Cpain::Actor* player = m_scene->getActorByName<Cpain::Actor>("player");
-    Cpain::vec2 position = player->transform.position + Cpain::onUnitCircle() * Cpain::getReal(200.0f, 500.0f);
-    Cpain::Transform transform{ position, Cpain::getReal(0.0f, 360.0f), 0.2f };
-    auto enemy = Cpain::instantiate("bat", transform);
+    int screenWidth = Cpain::getEngine().getRenderer().getWidth();
+    int screenHeight = Cpain::getEngine().getRenderer().getHeight();
+    Cpain::vec2 position;
+
+    int side = Cpain::getInt(0, 2);
+
+    switch (side) {
+    case 0:
+        position = Cpain::vec2{ Cpain::getReal(0.0f, (float)screenWidth), ((float)screenHeight + 10.0f) };
+        break;
+    case 1:
+        position = Cpain::vec2{ -10.0f, Cpain::getReal(0.0f, (float)screenHeight)};
+        break;
+    case 2:
+        position = Cpain::vec2{ ((float)screenWidth + 10.0f), Cpain::getReal(0.0f, (float)screenHeight)};
+        break;
+    }
+
+
+    auto enemy = Cpain::instantiate("bat", position);
     m_scene->addActor(std::move(enemy));
 }
 
